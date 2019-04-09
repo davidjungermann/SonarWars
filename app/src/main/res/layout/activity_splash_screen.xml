@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashScreenActivity"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    android:screenOrientation="portrait">
 
     <ImageView
         android:id="@+id/imageView"
