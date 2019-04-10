@@ -16,8 +16,8 @@ import org.andengine.util.adt.color.Color;
 
 public class MainActivity extends SimpleBaseGameActivity {
 
-    static final int CAMERA_WIDTH = 800;
-    static final int CAMERA_HEIGHT = 480;
+    static final int CAMERA_WIDTH = 1920;
+    static final int CAMERA_HEIGHT = 1080;
 
     public Font mFont;
     public Camera mCamera;
@@ -30,7 +30,7 @@ public class MainActivity extends SimpleBaseGameActivity {
         instance = this;
         mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
 
-        return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), mCamera);
+        return new EngineOptions(true, ScreenOrientation.LANDSCAPE_SENSOR, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), mCamera);
     }
 
     protected void onCreateResources() {
@@ -41,7 +41,7 @@ public class MainActivity extends SimpleBaseGameActivity {
     protected Scene onCreateScene() {
         mEngine.registerUpdateHandler(new FPSLogger());
         mCurrentScene = new Scene();
-        mCurrentScene.setBackground(new Background(0.09804f, 0.7274f, 0.8f));
+        mCurrentScene.setBackground(new Background(Color.BLACK));
         mCamera = MainActivity.getSharedInstance().mCamera;
         Ship ship = Ship.getSharedInstance();
         mCurrentScene.attachChild(ship.sprite);
