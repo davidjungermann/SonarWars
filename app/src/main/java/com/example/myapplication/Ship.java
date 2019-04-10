@@ -7,6 +7,7 @@ public class Ship {
     public Rectangle sprite;
     public static Ship instance;
     Camera mCamera;
+
     public static Ship getSharedInstance() {
         if (instance == null)
             instance = new Ship();
@@ -20,4 +21,5 @@ public class Ship {
         sprite.setPosition(mCamera.getWidth() / 2 - sprite.getWidth() / 2,
                 mCamera.getHeight() / 2 - sprite.getHeight() / 2);
     }
+
 }
