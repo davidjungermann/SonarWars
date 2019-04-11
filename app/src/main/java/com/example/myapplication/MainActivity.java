@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 
 import org.andengine.engine.camera.Camera;
@@ -9,13 +10,15 @@ import org.andengine.entity.scene.background.Background;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.entity.util.FPSLogger;
+import org.andengine.opengl.font.Font;
+import org.andengine.opengl.font.FontFactory;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
-import org.andengine.util.adt.color.Color;
 
 public class MainActivity extends SimpleBaseGameActivity {
     static final int CAMERA_WIDTH = 1920;
     static final int CAMERA_HEIGHT = 1080;
     public Camera mCamera;
+    public Font mFont;
 
     //A reference to the current scene
     public Scene mCurrentScene;
@@ -24,20 +27,17 @@ public class MainActivity extends SimpleBaseGameActivity {
     public EngineOptions onCreateEngineOptions() {
         instance = this;
         mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
-
-        return new EngineOptions(true, ScreenOrientation.LANDSCAPE_SENSOR, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), mCamera);
+        return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), mCamera);
     }
 
     protected void onCreateResources() {
+        mFont = FontFactory.create(this.getFontManager(), this.getTextureManager(), 256, 256, Typeface.create(Typeface.MONOSPACE, Typeface.BOLD), 32, android.graphics.Color.rgb(255, 255, 51));
+        mFont.load();
     }
 
     protected Scene onCreateScene() {
         mEngine.registerUpdateHandler(new FPSLogger());
-        mCurrentScene = new Scene();
-        mCurrentScene.setBackground(new Background(Color.BLACK));
-        mCamera = MainActivity.getSharedInstance().mCamera;
-        Ship ship = Ship.getSharedInstance();
-        mCurrentScene.attachChild(ship.sprite);
+        mCurrentScene = new SplashScene();
         return mCurrentScene;
     }
 
@@ -45,10 +45,8 @@ public class MainActivity extends SimpleBaseGameActivity {
         return instance;
     }
 
-    // to change the current main scene
     public void setCurrentScene(Scene scene) {
         mCurrentScene = scene;
         getEngine().setScene(mCurrentScene);
     }
-
 }
