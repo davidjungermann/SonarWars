@@ -16,7 +16,7 @@ import org.andengine.opengl.font.FontFactory;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 
 public class MainActivity extends SimpleBaseGameActivity {
-    static int CAMERA_WIDTH ;
+    static int CAMERA_WIDTH;
     static int CAMERA_HEIGHT;
     public Camera mCamera;
     public Font mFont;

@@ -17,7 +17,6 @@ public class GameScene extends Scene {
     SensorManager sensorManager;
 
     public GameScene() {
-
         setBackground(new Background(Color.BLACK));
         mCamera = MainActivity.getSharedInstance().mCamera;
         ship = Ship.getSharedInstance();
