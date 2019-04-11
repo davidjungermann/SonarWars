@@ -23,7 +23,7 @@ public class Ship {
         sprite = new Rectangle(0, 0, 280, 120, MainActivity.getSharedInstance()
                 .getVertexBufferObjectManager());
         mCamera = MainActivity.getSharedInstance().mCamera;
-        sprite.setPosition(960,
+        sprite.setPosition(mCamera.getWidth() / 2 - sprite.getWidth() / 2,
                 20);
         moveable = true;
     }
@@ -34,16 +34,16 @@ public class Ship {
 
         if (accelerometerSpeedX != 0) {
             int lL = 0;
-            int rL = 1920;
+            int rL = (int) (mCamera.getWidth() - (int) sprite.getWidth());
             float newX;
 
             // Calculate New X,Y Coordinates within Limits
             if (sprite.getX() >= lL)
-                newX = sprite.getX() + accelerometerSpeedX*5;
+                newX = sprite.getX() + accelerometerSpeedX;
             else
                 newX = lL;
             if (newX <= rL)
-                newX = sprite.getX() + accelerometerSpeedX*5;
+                newX = sprite.getX() + accelerometerSpeedX;
             else
                 newX = rL;
 
@@ -63,10 +63,10 @@ public class Ship {
         GameScene scene = (GameScene) MainActivity.getSharedInstance().mCurrentScene;
 
         Bullet b = (Bullet) BulletPool.sharedBulletPool().obtainPoolItem();
-        b.sprite.setPosition(sprite.getX(),
-                90);
+        b.sprite.setPosition(sprite.getX() + sprite.getWidth() / 2,
+                sprite.getY());
         MoveYModifier mod = new MoveYModifier(1.5f, b.sprite.getY(),
-                1090);
+                -b.sprite.getHeight());
 
         b.sprite.setVisible(true);
         b.sprite.detachSelf();
