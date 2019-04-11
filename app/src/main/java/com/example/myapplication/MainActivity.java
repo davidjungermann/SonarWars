@@ -15,8 +15,8 @@ import org.andengine.opengl.font.FontFactory;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 
 public class MainActivity extends SimpleBaseGameActivity {
-    int CAMERA_WIDTH = 1900;
-    int CAMERA_HEIGHT = 1080;
+    static final int CAMERA_WIDTH = 1920;
+    static final int CAMERA_HEIGHT = 1080;
     public Camera mCamera;
     public Font mFont;
 
@@ -31,7 +31,7 @@ public class MainActivity extends SimpleBaseGameActivity {
     }
 
     protected void onCreateResources() {
-        mFont = FontFactory.create(this.getFontManager(), this.getTextureManager(), 256, 256, Typeface.create(Typeface.MONOSPACE, Typeface.BOLD), 32, android.graphics.Color.rgb(255, 255, 51));
+        mFont = FontFactory.create(this.getFontManager(), this.getTextureManager(), 256, 256, Typeface.create(Typeface.MONOSPACE, Typeface.BOLD), 72, android.graphics.Color.rgb(255, 255, 51));
         mFont.load();
     }
 

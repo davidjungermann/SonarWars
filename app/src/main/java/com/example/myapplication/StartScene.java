@@ -16,7 +16,7 @@ public class StartScene extends MenuScene implements MenuScene.IOnMenuItemClickL
 
         setBackground(new Background(Color.BLACK));
         IMenuItem startButton = new TextMenuItem(MENU_START, activity.mFont, activity.getString(R.string.start), activity.getVertexBufferObjectManager());
-        startButton.setPosition(mCamera.getWidth() / 2 - startButton.getWidth() / 2, mCamera.getHeight() / 2 - startButton.getHeight() / 2);
+        startButton.setPosition(mCamera.getCenterX(), mCamera.getCenterY());
         addMenuItem(startButton);
 
         setOnMenuItemClickListener(this);
