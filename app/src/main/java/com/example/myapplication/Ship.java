@@ -16,7 +16,7 @@ public class Ship {
     }
 
     private Ship() {
-        sprite = new Rectangle(0, 0, 70, 30, MainActivity.getSharedInstance()
+        sprite = new Rectangle(0, 0, 270, 180, MainActivity.getSharedInstance()
                 .getVertexBufferObjectManager());
         mCamera = MainActivity.getSharedInstance().mCamera;
         sprite.setPosition(mCamera.getWidth() / 2 - sprite.getWidth() / 2,
