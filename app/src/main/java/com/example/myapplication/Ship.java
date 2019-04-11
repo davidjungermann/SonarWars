@@ -20,7 +20,7 @@ public class Ship {
                 .getVertexBufferObjectManager());
         mCamera = MainActivity.getSharedInstance().mCamera;
         sprite.setPosition(mCamera.getWidth() / 2 - sprite.getWidth() / 2,
-                1080 - 10);
+                mCamera.getHeight() - sprite.getHeight() - 10);
         moveable = true;
     }
 
