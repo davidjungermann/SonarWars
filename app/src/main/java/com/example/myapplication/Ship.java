@@ -16,7 +16,7 @@ public class Ship {
     }
 
     private Ship() {
-        sprite = new Rectangle(0, 0, 270, 180, MainActivity.getSharedInstance()
+        sprite = new Rectangle(0, 0, 280, 120, MainActivity.getSharedInstance()
                 .getVertexBufferObjectManager());
         mCamera = MainActivity.getSharedInstance().mCamera;
         sprite.setPosition(mCamera.getWidth() / 2 - sprite.getWidth() / 2,
@@ -24,31 +24,7 @@ public class Ship {
         moveable = true;
     }
 
-    public void moveShip(float accelerometerSpeedX) {
-        if (!moveable)
-            return;
-
-        if (accelerometerSpeedX != 0) {
-            int lL = 0;
-            int rL = (int) (mCamera.getWidth() - (int) sprite.getWidth());
-            float newX;
-
-            // Calculate New X,Y Coordinates within Limits
-            if (sprite.getX() >= lL)
-                newX = sprite.getX() + accelerometerSpeedX;
-            else
-                newX = lL;
-            if (newX <= rL)
-                newX = sprite.getX() + accelerometerSpeedX;
-            else
-                newX = rL;
-
-            // Double Check That New X,Y Coordinates are within Limits
-            if (newX < lL)
-                newX = lL;
-            else if (newX > rL)
-                newX = rL;
-            sprite.setPosition(newX, sprite.getY());
-        }
+    public void moveShip(float mAzimuth) {
+            sprite.setRotation(mAzimuth);
     }
 }

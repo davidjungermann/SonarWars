@@ -17,6 +17,7 @@ public class GameScene extends Scene {
     SensorManager sensorManager;
 
     public GameScene() {
+
         setBackground(new Background(Color.BLACK));
         mCamera = MainActivity.getSharedInstance().mCamera;
         ship = Ship.getSharedInstance();
@@ -28,7 +29,6 @@ public class GameScene extends Scene {
         sensorManager.registerListener(SensorListener.getSharedInstance(),
                 sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                 SensorManager.SENSOR_DELAY_GAME);
-
         registerUpdateHandler(new GameLoopUpdateHandler());
     }
 

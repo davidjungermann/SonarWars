@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.util.DisplayMetrics;
 
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
@@ -15,8 +16,8 @@ import org.andengine.opengl.font.FontFactory;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 
 public class MainActivity extends SimpleBaseGameActivity {
-    static final int CAMERA_WIDTH = 1920;
-    static final int CAMERA_HEIGHT = 1080;
+    static int CAMERA_WIDTH ;
+    static int CAMERA_HEIGHT;
     public Camera mCamera;
     public Font mFont;
 
@@ -25,6 +26,10 @@ public class MainActivity extends SimpleBaseGameActivity {
     public static MainActivity instance;
 
     public EngineOptions onCreateEngineOptions() {
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        CAMERA_HEIGHT = metrics.widthPixels;
+        CAMERA_WIDTH = metrics.heightPixels;
         instance = this;
         mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
         return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), mCamera);
