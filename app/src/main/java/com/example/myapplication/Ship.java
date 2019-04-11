@@ -16,11 +16,11 @@ public class Ship {
     }
 
     private Ship() {
-        sprite = new Rectangle(0, 0, 280, 120, MainActivity.getSharedInstance()
+        sprite = new Rectangle(0, 0, 70, 30, MainActivity.getSharedInstance()
                 .getVertexBufferObjectManager());
         mCamera = MainActivity.getSharedInstance().mCamera;
         sprite.setPosition(mCamera.getWidth() / 2 - sprite.getWidth() / 2,
-                mCamera.getHeight() / 2 - sprite.getHeight() / 2);
+                1080 - 10);
         moveable = true;
     }
 

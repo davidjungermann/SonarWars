@@ -10,6 +10,16 @@ import org.andengine.ui.activity.BaseActivity;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.util.adt.color.Color;
 
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
+
+import org.andengine.engine.camera.Camera;
+import org.andengine.entity.scene.Scene;
+import org.andengine.entity.scene.background.Background;
+import org.andengine.ui.activity.BaseActivity;
+import org.andengine.ui.activity.BaseGameActivity;
+import org.andengine.util.adt.color.Color;
+
 public class GameScene extends Scene {
     public Ship ship;
     Camera mCamera;
@@ -28,6 +38,7 @@ public class GameScene extends Scene {
         sensorManager.registerListener(SensorListener.getSharedInstance(),
                 sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                 SensorManager.SENSOR_DELAY_GAME);
+
         registerUpdateHandler(new GameLoopUpdateHandler());
     }
 
@@ -35,3 +46,4 @@ public class GameScene extends Scene {
         ship.moveShip(accelerometerSpeedX);
     }
 }
+

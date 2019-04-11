@@ -1,14 +1,10 @@
 package com.example.myapplication;
 
-import android.content.DialogInterface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 
-public class SensorListener extends AppCompatActivity implements SensorEventListener {
+public class SensorListener implements SensorEventListener {
     static SensorListener instance;
     GameScene scene;
 
@@ -38,5 +34,6 @@ public class SensorListener extends AppCompatActivity implements SensorEventList
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
     }
 }
