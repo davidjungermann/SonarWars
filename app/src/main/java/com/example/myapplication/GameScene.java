@@ -4,8 +4,10 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 
 import org.andengine.engine.camera.Camera;
+import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
+import org.andengine.input.touch.TouchEvent;
 import org.andengine.ui.activity.BaseActivity;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.util.adt.color.Color;
@@ -20,13 +22,19 @@ import org.andengine.ui.activity.BaseActivity;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.util.adt.color.Color;
 
-public class GameScene extends Scene {
+import java.util.Iterator;
+import java.util.LinkedList;
+
+public class GameScene extends Scene implements IOnSceneTouchListener {
+    public LinkedList bulletList;
     public Ship ship;
+    public int bulletCount;
     Camera mCamera;
     float accelerometerSpeedX;
     SensorManager sensorManager;
 
     public GameScene() {
+        bulletList = new LinkedList();
         setBackground(new Background(Color.BLACK));
         mCamera = MainActivity.getSharedInstance().mCamera;
         ship = Ship.getSharedInstance();
@@ -44,6 +52,28 @@ public class GameScene extends Scene {
 
     public void moveShip() {
         ship.moveShip(accelerometerSpeedX);
+    }
+
+    @Override
+    public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {
+        synchronized (this) {
+            ship.shoot();
+        }
+        return true;
+    }
+
+    public void cleaner() {
+        synchronized (this) {
+            Iterator it = bulletList.iterator();
+            while (it.hasNext()) {
+                Bullet b = (Bullet) it.next();
+                if (b.sprite.getY() <= -b.sprite.getHeight()) {
+                    BulletPool.sharedBulletPool().recyclePoolItem(b);
+                    it.remove();
+                    continue;
+                }
+            }
+        }
     }
 }
 

@@ -1,7 +1,11 @@
 package com.example.myapplication;
 
+import android.app.Activity;
+
 import org.andengine.engine.camera.Camera;
+import org.andengine.entity.modifier.MoveYModifier;
 import org.andengine.entity.primitive.Rectangle;
+import org.andengine.ui.activity.BaseActivity;
 
 public class Ship {
     public Rectangle sprite;
@@ -50,5 +54,24 @@ public class Ship {
                 newX = rL;
             sprite.setPosition(newX, sprite.getY());
         }
+    }
+
+    public void shoot() {
+        if (!moveable)
+            return;
+        GameScene scene = (GameScene) MainActivity.getSharedInstance().mCurrentScene;
+
+        Bullet b = (Bullet) BulletPool.sharedBulletPool().obtainPoolItem();
+        b.sprite.setPosition(sprite.getX() + sprite.getWidth() / 2,
+                sprite.getY());
+        MoveYModifier mod = new MoveYModifier(1.5f, b.sprite.getY(),
+                -b.sprite.getHeight());
+
+        b.sprite.setVisible(true);
+        b.sprite.detachSelf();
+        scene.attachChild(b.sprite);
+        scene.bulletList.add(b);
+        b.sprite.registerEntityModifier(mod);
+        scene.bulletCount++;
     }
 }
