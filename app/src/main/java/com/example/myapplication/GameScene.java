@@ -26,7 +26,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class GameScene extends Scene implements IOnSceneTouchListener {
-    public LinkedList bulletList;
+    public LinkedList<Bullet> bulletList;
     public Ship ship;
     public int bulletCount;
     Camera mCamera;
@@ -34,8 +34,9 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     SensorManager sensorManager;
 
     public GameScene() {
-        bulletList = new LinkedList();
-        setBackground(new Background(Color.BLACK));
+        setOnSceneTouchListener(this);
+        bulletList = new LinkedList<>();
+        setBackground(new Background(Color.RED));
         mCamera = MainActivity.getSharedInstance().mCamera;
         ship = Ship.getSharedInstance();
         attachChild(ship.sprite);
