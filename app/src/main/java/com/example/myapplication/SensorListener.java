@@ -7,7 +7,6 @@ import android.hardware.SensorEventListener;
 public class SensorListener implements SensorEventListener {
     static SensorListener instance;
     GameScene scene;
-    private Sensor mOrientationSensor;
 
     public static SensorListener getSharedInstance() {
         if (instance == null)

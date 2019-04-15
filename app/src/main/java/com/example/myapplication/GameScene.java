@@ -59,18 +59,15 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         ship.moveShip(accelerometerSpeedX);
     }
 
-    public boolean proximity(){
-        if(proximity < 5){
-            ship.shoot();
-        }
-        return true;
-    }
-
     @Override
     public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {
-            if(proximity < 5) {
-                ship.shoot();
-            }
+
+        if (!CoolDown.getSharedInstance().checkValidity()) {
+            return false;
+        }
+        if (bulletCount < 20 && proximity == 5) {
+            ship.shoot();
+        }
         return true;
     }
 
@@ -79,7 +76,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
             Iterator it = bulletList.iterator();
             while (it.hasNext()) {
                 Bullet b = (Bullet) it.next();
-                if (b.sprite.getY() <= -b.sprite.getHeight()) {
+                if (b.sprite.getY() > mCamera.getHeight()) {
                     BulletPool.sharedBulletPool().recyclePoolItem(b);
                     it.remove();
                     continue;

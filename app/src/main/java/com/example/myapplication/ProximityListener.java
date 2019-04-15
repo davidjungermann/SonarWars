@@ -25,6 +25,7 @@ public class ProximityListener implements SensorEventListener {
             switch (event.sensor.getType()) {
                 case Sensor.TYPE_PROXIMITY:
                     scene.proximity = Math.round(event.values[0]);
+                    scene.bulletCount = 0;
                     break;
                 default:
                     break;
