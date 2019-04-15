@@ -31,6 +31,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     public int bulletCount;
     Camera mCamera;
     float accelerometerSpeedX;
+    int proximity;
     SensorManager sensorManager;
 
     public GameScene() {
@@ -47,12 +48,22 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         sensorManager.registerListener(SensorListener.getSharedInstance(),
                 sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                 SensorManager.SENSOR_DELAY_GAME);
-
+        ProximityListener.getSharedInstance();
+        sensorManager.registerListener(ProximityListener.getSharedInstance(),
+                sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY),
+                SensorManager.SENSOR_DELAY_GAME);
         registerUpdateHandler(new GameLoopUpdateHandler());
     }
 
     public void moveShip() {
         ship.moveShip(accelerometerSpeedX);
+    }
+
+    public boolean proximity(){
+        while(proximity < 5){
+            ship.shoot();
+        }
+        return true;
     }
 
     @Override
@@ -62,6 +73,8 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         }
         return true;
     }
+
+
 
     public void cleaner() {
         synchronized (this) {

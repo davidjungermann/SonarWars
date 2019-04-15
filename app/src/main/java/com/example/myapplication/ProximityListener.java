@@ -4,18 +4,17 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 
-public class SensorListener implements SensorEventListener {
-    static SensorListener instance;
+public class ProximityListener implements SensorEventListener {
+    static ProximityListener instance;
     GameScene scene;
-    private Sensor mOrientationSensor;
 
-    public static SensorListener getSharedInstance() {
+    public static ProximityListener getSharedInstance() {
         if (instance == null)
-            instance = new SensorListener();
+            instance = new ProximityListener();
         return instance;
     }
 
-    public SensorListener() {
+    public ProximityListener() {
         instance = this;
         scene = (GameScene) MainActivity.getSharedInstance().mCurrentScene;
     }
@@ -24,8 +23,8 @@ public class SensorListener implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         synchronized (this) {
             switch (event.sensor.getType()) {
-                case Sensor.TYPE_ACCELEROMETER:
-                    scene.accelerometerSpeedX = Math.round(event.values[1]);
+                case Sensor.TYPE_PROXIMITY:
+                    scene.proximity = Math.round(event.values[0]);
                     break;
                 default:
                     break;
