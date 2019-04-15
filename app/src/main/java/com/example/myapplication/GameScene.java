@@ -60,7 +60,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     }
 
     public boolean proximity(){
-        while(proximity < 5){
+        if(proximity < 5){
             ship.shoot();
         }
         return true;
@@ -68,13 +68,11 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
 
     @Override
     public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {
-        synchronized (this) {
-            ship.shoot();
-        }
+            if(proximity < 5) {
+                ship.shoot();
+            }
         return true;
     }
-
-
 
     public void cleaner() {
         synchronized (this) {
