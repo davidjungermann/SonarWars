@@ -25,8 +25,8 @@ public class SplashScene extends Scene {
         attachChild(title1);
         attachChild(title2);
 
-        title1.registerEntityModifier(new MoveXModifier(1, title1.getX(), activity.mCamera.getCenterX() - title1.getWidth()));
-        title2.registerEntityModifier(new MoveXModifier(1, title2.getX(), activity.mCamera.getCenterX() + 20));
+        title1.registerEntityModifier(new MoveXModifier(1, title1.getX(), activity.mCamera.getCenterX() - title2.getWidth() + 90));
+        title2.registerEntityModifier(new MoveXModifier(1, title2.getX(), activity.mCamera.getCenterX() + title1.getWidth() - 90));
         loadResources();
 
     }

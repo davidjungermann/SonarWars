@@ -27,30 +27,79 @@ public class Ship {
         moveable = true;
     }
 
-    public void moveShip(float accelerometerSpeedX) {
+    public void moveShip(float accelerometerSpeedX, float accelerometerSpeedY) {
         if(!moveable)
         return;
 
-        if (accelerometerSpeedX != 0) {
+        if (accelerometerSpeedX != 0 || accelerometerSpeedY != 0) {
             int lL = 0;
             int rL = (int) mCamera.getWidth();
+            int height = (int) mCamera.getHeight();
             float newX;
+            float newY;
 
             // Calculate New X,Y Coordinates within Limits
-            if (sprite.getX() >= lL)
+            if (sprite.getX() >= lL){
                 newX = sprite.getX() + accelerometerSpeedX*5;
-            else
+            } else {
                 newX = lL;
-            if (newX <= rL)
+            }
+
+            if (newX <= rL) {
                 newX = sprite.getX() + accelerometerSpeedX*5;
-            else
+            } else {
                 newX = rL;
+            }
 
             // Double Check That New X,Y Coordinates are within Limits
             if (newX < lL)
                 newX = lL;
             else if (newX > rL)
                 newX = rL;
+            sprite.setPosition(newX, sprite.getY());
+        }
+
+        if(accelerometerSpeedY != 0){
+            int lL = 0;
+            int rL = (int) mCamera.getWidth();
+            int bL = 0;
+            int hL = (int) mCamera.getHeight();
+            float newX;
+            float newY;
+
+            // Calculate New X,Y Coordinates within Limits
+            if (sprite.getX() >= lL) {
+                newX = sprite.getX() + accelerometerSpeedX*3;
+            } else {
+                newX = lL;
+            }
+            if (newX <= rL) {
+                newX = sprite.getX() + accelerometerSpeedX*3;
+            } else {
+                newX = rL;
+            }
+            if(sprite.getY() >= bL){
+                newY = sprite.getY() + accelerometerSpeedY*3;
+            } else {
+                newY = bL;
+            }
+            if(newY <= hL){
+                newY = sprite.getY() + accelerometerSpeedY*3;
+            } else {
+                newY = hL;
+            }
+
+            // Double Check That New X,Y Coordinates are within Limits
+            if (newX < lL) {
+                newX = lL;
+            } else if (newX > rL) {
+                newX = rL;
+            }
+            if(newY < bL){
+                newY = bL;
+            } else if(newY > hL){
+                newY = hL;
+            }
             sprite.setPosition(newX, sprite.getY());
         }
     }
@@ -60,7 +109,6 @@ public class Ship {
             return;
         }
         GameScene scene = (GameScene) MainActivity.getSharedInstance().mCurrentScene;
-
         Bullet b = (Bullet) BulletPool.sharedBulletPool().obtainPoolItem();
         b.sprite.setPosition(sprite.getX(), sprite.getY() + 50);
         MoveYModifier mod = new MoveYModifier(1.5f, b.sprite.getY(),

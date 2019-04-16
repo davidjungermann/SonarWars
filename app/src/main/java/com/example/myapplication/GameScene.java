@@ -7,9 +7,12 @@ import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
+import org.andengine.entity.text.Text;
+import org.andengine.entity.text.TextOptions;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.ui.activity.BaseActivity;
 import org.andengine.ui.activity.BaseGameActivity;
+import org.andengine.util.adt.align.HorizontalAlign;
 import org.andengine.util.adt.color.Color;
 
 import android.hardware.Sensor;
@@ -26,11 +29,13 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class GameScene extends Scene implements IOnSceneTouchListener {
+    MainActivity activity;
     public LinkedList<Bullet> bulletList;
     public Ship ship;
     public int bulletCount;
     Camera mCamera;
     float accelerometerSpeedX;
+    float accelerometerSpeedY;
     int proximity;
     SensorManager sensorManager;
 
@@ -56,7 +61,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     }
 
     public void moveShip() {
-        ship.moveShip(accelerometerSpeedX);
+        ship.moveShip(accelerometerSpeedX, accelerometerSpeedY);
     }
 
     @Override

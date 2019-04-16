@@ -3,5 +3,6 @@
     <string name="title_1">Sonar</string>
     <string name="title_2">Wars</string>
     <string name="start">Start</string>
+    <string name="bullets">Bullets: </string>
     <string name="title_activity_sensor">SensorActivity</string>
 </resources>

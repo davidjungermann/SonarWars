@@ -25,6 +25,7 @@ public class SensorListener implements SensorEventListener {
             switch (event.sensor.getType()) {
                 case Sensor.TYPE_ACCELEROMETER:
                     scene.accelerometerSpeedX = Math.round(event.values[1]);
+                    //scene.accelerometerSpeedY = -Math.round(event.values[0]);
                     break;
                 default:
                     break;
