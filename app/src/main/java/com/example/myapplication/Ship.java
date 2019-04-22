@@ -120,5 +120,7 @@ public class Ship {
         scene.bulletList.add(b);
         b.sprite.registerEntityModifier(mod);
         scene.bulletCount++;
+
+
     }
 }

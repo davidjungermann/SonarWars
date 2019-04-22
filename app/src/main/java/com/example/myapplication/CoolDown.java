@@ -6,7 +6,7 @@ import java.util.TimerTask;
 public class CoolDown {
     private boolean valid;
     private Timer timer;
-    private long delay = 400;
+    private long delay = 200;
     private static CoolDown instance = null;
 
     public static CoolDown getSharedInstance() {

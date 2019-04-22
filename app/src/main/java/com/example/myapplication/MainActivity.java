@@ -31,7 +31,7 @@ public class MainActivity extends SimpleBaseGameActivity {
     }
 
     protected void onCreateResources() {
-        mFont = FontFactory.create(this.getFontManager(), this.getTextureManager(), 256, 256, Typeface.create(Typeface.MONOSPACE, Typeface.BOLD), 72, android.graphics.Color.rgb(255, 255, 51));
+        mFont = FontFactory.create(this.getFontManager(), this.getTextureManager(), 256, 512, Typeface.create(Typeface.MONOSPACE, Typeface.BOLD), 72, android.graphics.Color.rgb(255, 255, 51));
         mFont.load();
     }
 
