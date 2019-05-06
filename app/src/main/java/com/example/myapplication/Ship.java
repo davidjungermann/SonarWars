@@ -56,7 +56,7 @@ public class Ship {
                 newX = lL;
             else if (newX > rL)
                 newX = rL;
-            sprite.setPosition(newX, sprite.getY());
+            sprite.setPosition(newX, 0);
         }
 
         if(accelerometerSpeedY != 0){
@@ -100,7 +100,7 @@ public class Ship {
             } else if(newY > hL){
                 newY = hL;
             }
-            sprite.setPosition(newX, sprite.getY());
+            sprite.setPosition(newX, 0);
         }
     }
 
