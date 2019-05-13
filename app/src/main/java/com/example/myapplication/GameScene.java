@@ -24,6 +24,7 @@ import org.andengine.util.adt.color.Color;
 
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.util.Log;
 
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.Scene;
@@ -64,17 +65,13 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         setOnSceneTouchListener(this);
         bulletList = new LinkedList<>();
         setBackground(new Background(Color.BLACK));
+        attachChild(new EnemyLayer(12));
         mCamera = MainActivity.getSharedInstance().mCamera;
         ship = Ship.getSharedInstance();
-
-
         attachChild(ship.sprite);
         setHud();
         MainActivity.getSharedInstance().setCurrentScene(this);
         MainActivity.getSharedInstance().onCreateResources();
-
-
-
         sensorManager = (SensorManager) MainActivity.getSharedInstance()
                 .getSystemService(BaseGameActivity.SENSOR_SERVICE);
         SensorListener.getSharedInstance();
@@ -87,8 +84,6 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 SensorManager.SENSOR_DELAY_GAME);
 
         registerUpdateHandler(new GameLoopUpdateHandler());
-
-
     }
 
     public void moveShip() {
@@ -142,8 +137,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         if (!CoolDown.getSharedInstance().checkValidity()) {
             return false;
         }
-        if (bulletCount < 20 && proximity == 5) {
-
+        if (bulletCount < 20 && proximity > 0) {
             ship.shoot();
         }
         return true;
@@ -154,7 +148,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
             Iterator it = bulletList.iterator();
             while (it.hasNext()) {
                 Bullet b = (Bullet) it.next();
-                if (b.sprite.getY() > mCamera.getHeight()) {
+                if (b.sprite.getY() >= mCamera.getHeight()) {
                     BulletPool.sharedBulletPool().recyclePoolItem(b);
                     it.remove();
                     continue;
@@ -162,5 +156,6 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
             }
         }
     }
+
 }
 

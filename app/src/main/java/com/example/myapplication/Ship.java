@@ -34,9 +34,7 @@ public class Ship {
         if (accelerometerSpeedX != 0 || accelerometerSpeedY != 0) {
             int lL = 0;
             int rL = (int) mCamera.getWidth();
-            int height = (int) mCamera.getHeight();
             float newX;
-            float newY;
 
             // Calculate New X,Y Coordinates within Limits
             if (sprite.getX() >= lL){
@@ -44,7 +42,6 @@ public class Ship {
             } else {
                 newX = lL;
             }
-
             if (newX <= rL) {
                 newX = sprite.getX() + accelerometerSpeedX*5;
             } else {
@@ -56,51 +53,7 @@ public class Ship {
                 newX = lL;
             else if (newX > rL)
                 newX = rL;
-            sprite.setPosition(newX, 0);
-        }
-
-        if(accelerometerSpeedY != 0){
-            int lL = 0;
-            int rL = (int) mCamera.getWidth();
-            int bL = 0;
-            int hL = (int) mCamera.getHeight();
-            float newX;
-            float newY;
-
-            // Calculate New X,Y Coordinates within Limits
-            if (sprite.getX() >= lL) {
-                newX = sprite.getX() + accelerometerSpeedX*3;
-            } else {
-                newX = lL;
-            }
-            if (newX <= rL) {
-                newX = sprite.getX() + accelerometerSpeedX*3;
-            } else {
-                newX = rL;
-            }
-            if(sprite.getY() >= bL){
-                newY = sprite.getY() + accelerometerSpeedY*3;
-            } else {
-                newY = bL;
-            }
-            if(newY <= hL){
-                newY = sprite.getY() + accelerometerSpeedY*3;
-            } else {
-                newY = hL;
-            }
-
-            // Double Check That New X,Y Coordinates are within Limits
-            if (newX < lL) {
-                newX = lL;
-            } else if (newX > rL) {
-                newX = rL;
-            }
-            if(newY < bL){
-                newY = bL;
-            } else if(newY > hL){
-                newY = hL;
-            }
-            sprite.setPosition(newX, 0);
+            sprite.setPosition(newX, sprite.getY());
         }
     }
 
@@ -113,7 +66,6 @@ public class Ship {
         b.sprite.setPosition(sprite.getX(), sprite.getY() + 50);
         MoveYModifier mod = new MoveYModifier(1.5f, b.sprite.getY(),
                 mCamera.getHeight() + 10);
-
         b.sprite.setVisible(true);
         b.sprite.detachSelf();
         scene.attachChild(b.sprite);

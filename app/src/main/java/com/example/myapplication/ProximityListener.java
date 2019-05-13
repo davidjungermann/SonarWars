@@ -4,6 +4,8 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 
+import static java.lang.Thread.sleep;
+
 public class ProximityListener implements SensorEventListener {
     static ProximityListener instance;
     GameScene scene;
