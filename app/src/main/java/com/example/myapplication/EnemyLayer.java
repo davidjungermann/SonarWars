@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import org.andengine.engine.camera.Camera;
 import org.andengine.entity.Entity;
 import org.andengine.entity.modifier.LoopEntityModifier;
 import org.andengine.entity.modifier.MoveModifier;
@@ -16,6 +17,7 @@ public class EnemyLayer extends Entity {
     private LinkedList<Enemy> enemies;
     public static EnemyLayer instance;
     public int enemyCount;
+    public Camera mCamera;
 
     public static EnemyLayer getSharedInstance() {
         return instance;
@@ -42,34 +44,21 @@ public class EnemyLayer extends Entity {
         enemies.clear();
         clearEntityModifiers();
         clearUpdateHandlers();
+        mCamera = MainActivity.getSharedInstance().mCamera;
+        int width = (int) mCamera.getWidth();
+        int height = (int) mCamera.getHeight();
+        Random rand = new Random(width);
 
         for (int i = 0; i < enemyCount; i++) {
+
             Enemy e = (Enemy) EnemyPool.sharedEnemyPool().obtainPoolItem();
-            float finalPosX = (i % 6) * 4 * e.sprite.getWidth();
-            float finalPosY = ((int) (i / 6)) * e.sprite.getHeight() * 2;
-
-            Random r = new Random();
-            e.sprite.setPosition(r.nextInt(2) == 0 ? -e.sprite.getWidth() * 3
-                            : MainActivity.CAMERA_WIDTH + e.sprite.getWidth() * 3,
-                    (r.nextInt(5) + 1) * e.sprite.getHeight());
+            e.sprite.setPosition(mCamera.getCenterX() + rand.nextFloat(), -20);
             e.sprite.setVisible(true);
-
             attachChild(e.sprite);
-            e.sprite.registerEntityModifier(new MoveModifier(2,
-                    e.sprite.getX(), finalPosX, e.sprite.getY(), finalPosY));
-
             enemies.add(e);
-
             setVisible(true);
-            setPosition(50, 30);
-
-            MoveXModifier movRight = new MoveXModifier(1, 50, 120);
-            MoveXModifier movLeft = new MoveXModifier(1, 120, 50);
-            MoveYModifier moveDown = new MoveYModifier(1, 30, 100);
-            MoveYModifier moveUp = new MoveYModifier(1, 100, 30);
-
-            registerEntityModifier(new LoopEntityModifier(
-                    new SequenceEntityModifier(movRight, moveDown, movLeft, moveUp)));
+            MoveYModifier moveDown = new MoveYModifier(10, mCamera.getHeight(), -20);
+            registerEntityModifier(moveDown);
         }
     }
     public void purge() {

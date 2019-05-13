@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import org.andengine.engine.camera.Camera;
 import org.andengine.entity.modifier.LoopEntityModifier;
 import org.andengine.entity.modifier.RotationModifier;
 import org.andengine.entity.primitive.Rectangle;
