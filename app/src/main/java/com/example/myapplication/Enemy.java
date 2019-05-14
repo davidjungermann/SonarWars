@@ -4,6 +4,7 @@ import org.andengine.engine.camera.Camera;
 import org.andengine.entity.modifier.LoopEntityModifier;
 import org.andengine.entity.modifier.RotationModifier;
 import org.andengine.entity.primitive.Rectangle;
+import org.andengine.util.adt.color.Color;
 
 public class Enemy extends Object{
     public Rectangle sprite;
@@ -13,7 +14,7 @@ public class Enemy extends Object{
 
     public Enemy() {
         sprite = new Rectangle(0, 0, 30, 30,MainActivity.getSharedInstance().getVertexBufferObjectManager());
-        sprite.setColor(0.09904f, 0.8574f, 0.1786f);
+        sprite.setColor(Color.RED);
         init();
     }
 

@@ -49,8 +49,7 @@ public class EnemyLayer extends Entity {
         int height = (int) mCamera.getHeight();
         Random rand = new Random(width);
 
-        for (int i = 0; i < enemyCount; i++) {
-
+        for(int i = 0; i < enemyCount; i++){
             Enemy e = (Enemy) EnemyPool.sharedEnemyPool().obtainPoolItem();
             e.sprite.setPosition(mCamera.getCenterX() + rand.nextFloat(), -20);
             e.sprite.setVisible(true);
@@ -58,7 +57,7 @@ public class EnemyLayer extends Entity {
             enemies.add(e);
             setVisible(true);
             MoveYModifier moveDown = new MoveYModifier(10, mCamera.getHeight(), -20);
-            registerEntityModifier(moveDown);
+            registerEntityModifier(new LoopEntityModifier(moveDown));
         }
     }
     public void purge() {

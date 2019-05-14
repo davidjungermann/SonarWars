@@ -21,7 +21,7 @@ public class EnemyPool extends GenericPool {
     protected Object onAllocatePoolItem() {
         return new Enemy();
     }
-    
+
     protected void onHandleObtainItem(Enemy pItem) {
         pItem.init();
     }
