@@ -6,14 +6,14 @@ import org.andengine.entity.modifier.RotationModifier;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.util.adt.color.Color;
 
-public class Enemy extends Object{
+public class Enemy {
     public Rectangle sprite;
     public int hp;
     //the max health for each enemy
     protected final int MAX_HEALTH = 2;
 
     public Enemy() {
-        sprite = new Rectangle(0, 0, 30, 30,MainActivity.getSharedInstance().getVertexBufferObjectManager());
+        sprite = new Rectangle(0, 0, 60, 60, MainActivity.getSharedInstance().getVertexBufferObjectManager());
         sprite.setColor(Color.RED);
         init();
     }

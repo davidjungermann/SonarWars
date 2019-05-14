@@ -65,7 +65,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         setOnSceneTouchListener(this);
         bulletList = new LinkedList<>();
         setBackground(new Background(Color.BLACK));
-        attachChild(new EnemyLayer(5));
+        attachChild(new EnemySpawn(12));
         mCamera = MainActivity.getSharedInstance().mCamera;
         ship = Ship.getSharedInstance();
         attachChild(ship.sprite);
@@ -131,7 +131,6 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         }
     }
 
-
     @Override
     public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {
         if (!CoolDown.getSharedInstance().checkValidity()) {
@@ -145,17 +144,32 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
 
     public void cleaner() {
         synchronized (this) {
-            Iterator it = bulletList.iterator();
-            while (it.hasNext()) {
-                Bullet b = (Bullet) it.next();
-                if (b.sprite.getY() >= mCamera.getHeight()) {
-                    BulletPool.sharedBulletPool().recyclePoolItem(b);
-                    it.remove();
-                    continue;
+            Iterator<Enemy> eIt = EnemySpawn.getIterator();
+            while (eIt.hasNext()) {
+                Enemy e = eIt.next();
+                Iterator<Bullet> it = bulletList.iterator();
+                while (it.hasNext()) {
+                    Bullet b = it.next();
+                    if (b.sprite.getY() <= -b.sprite.getHeight()) {
+                        BulletPool.sharedBulletPool().recyclePoolItem(b);
+                        it.remove();
+                        continue;
+                    }
+                    if (b.sprite.collidesWith(e.sprite)) {
+                        if (!e.gotHit()) {
+                            EnemyPool.sharedEnemyPool().recyclePoolItem(e);
+                            eIt.remove();
+                        }
+                        BulletPool.sharedBulletPool().recyclePoolItem(b);
+                        it.remove();
+                        break;
+                    }
                 }
+
             }
         }
     }
-
 }
+
+
 

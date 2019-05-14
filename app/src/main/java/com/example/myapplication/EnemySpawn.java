@@ -8,22 +8,25 @@ import org.andengine.entity.modifier.LoopEntityModifier;
 import org.andengine.entity.modifier.MoveModifier;
 import org.andengine.entity.modifier.MoveXModifier;
 import org.andengine.entity.modifier.MoveYModifier;
+import org.andengine.entity.modifier.ParallelEntityModifier;
 import org.andengine.entity.modifier.SequenceEntityModifier;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class EnemyLayer extends Entity {
+import static java.lang.Thread.sleep;
+
+public class EnemySpawn extends Entity {
 
     private LinkedList<Enemy> enemies;
-    public static EnemyLayer instance;
+    public static EnemySpawn instance;
     public int enemyCount;
     public Camera mCamera;
     public TimerHandler time;
     public int width;
 
-    public static EnemyLayer getSharedInstance() {
+    public static EnemySpawn getSharedInstance() {
         return instance;
     }
 
@@ -37,7 +40,7 @@ public class EnemyLayer extends Entity {
         return instance.enemies.iterator();
     }
 
-    public EnemyLayer(int x) {
+    public EnemySpawn(int x) {
         enemies = new LinkedList();
         instance = this;
         enemyCount = x;
@@ -49,25 +52,18 @@ public class EnemyLayer extends Entity {
         clearEntityModifiers();
         clearUpdateHandlers();
         mCamera = MainActivity.getSharedInstance().mCamera;
+        Random rand = new Random();
+        width = (int) mCamera.getWidth();
 
         for(int i = 0; i < enemyCount; i++){
-            registerUpdateHandler(time = new TimerHandler(1, new ITimerCallback() {
-
-                @Override
-                public void onTimePassed(TimerHandler pTimerHandler) {
-                    Random rand = new Random();
-                    width = (int) mCamera.getWidth();
-                    Enemy e = (Enemy) EnemyPool.sharedEnemyPool().obtainPoolItem();
-                    e.sprite.setPosition(rand.nextInt(width), -20);
-                    e.sprite.setVisible(true);
-                    attachChild(e.sprite);
-                    enemies.add(e);
-                    setVisible(true);
-                    MoveYModifier moveDown = new MoveYModifier(10, mCamera.getHeight(), -20);
-                    e.sprite.registerEntityModifier(new LoopEntityModifier(moveDown));
-                }
-            }));
-
+            Enemy e = (Enemy) EnemyPool.sharedEnemyPool().obtainPoolItem();
+            e.sprite.setPosition(rand.nextInt(width), -20);
+            e.sprite.setVisible(true);
+            attachChild(e.sprite);
+            enemies.add(e);
+            setVisible(true);
+            MoveYModifier moveDown = new MoveYModifier(10, mCamera.getHeight(), -20);
+            e.sprite.registerEntityModifier(new LoopEntityModifier(moveDown));
         }
     }
     public void purge() {
