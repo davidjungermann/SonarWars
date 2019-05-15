@@ -65,7 +65,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         setOnSceneTouchListener(this);
         bulletList = new LinkedList<>();
         setBackground(new Background(Color.BLACK));
-        attachChild(new EnemySpawn(12));
+        attachChild(new EnemySpawn(3));
         mCamera = MainActivity.getSharedInstance().mCamera;
         ship = Ship.getSharedInstance();
         attachChild(ship.sprite);
@@ -154,15 +154,6 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                         BulletPool.sharedBulletPool().recyclePoolItem(b);
                         it.remove();
                         continue;
-                    }
-                    if (b.sprite.collidesWith(e.sprite)) {
-                        if (!e.gotHit()) {
-                            EnemyPool.sharedEnemyPool().recyclePoolItem(e);
-                            eIt.remove();
-                        }
-                        BulletPool.sharedBulletPool().recyclePoolItem(b);
-                        it.remove();
-                        break;
                     }
                 }
 

@@ -4,12 +4,16 @@ import org.andengine.engine.camera.Camera;
 import org.andengine.engine.handler.timer.ITimerCallback;
 import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.entity.Entity;
+import org.andengine.entity.IEntity;
+import org.andengine.entity.modifier.DelayModifier;
+import org.andengine.entity.modifier.IEntityModifier;
 import org.andengine.entity.modifier.LoopEntityModifier;
 import org.andengine.entity.modifier.MoveModifier;
 import org.andengine.entity.modifier.MoveXModifier;
 import org.andengine.entity.modifier.MoveYModifier;
 import org.andengine.entity.modifier.ParallelEntityModifier;
 import org.andengine.entity.modifier.SequenceEntityModifier;
+import org.andengine.util.modifier.IModifier;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -52,19 +56,26 @@ public class EnemySpawn extends Entity {
         clearEntityModifiers();
         clearUpdateHandlers();
         mCamera = MainActivity.getSharedInstance().mCamera;
-        Random rand = new Random();
         width = (int) mCamera.getWidth();
 
-        for(int i = 0; i < enemyCount; i++){
-            Enemy e = (Enemy) EnemyPool.sharedEnemyPool().obtainPoolItem();
-            e.sprite.setPosition(rand.nextInt(width), -20);
-            e.sprite.setVisible(true);
-            attachChild(e.sprite);
-            enemies.add(e);
-            setVisible(true);
-            MoveYModifier moveDown = new MoveYModifier(10, mCamera.getHeight(), -20);
-            e.sprite.registerEntityModifier(new LoopEntityModifier(moveDown));
-        }
+       TimerHandler spriteMoveHandler = new TimerHandler(3, true, new ITimerCallback() {
+            @Override
+            public void onTimePassed(TimerHandler pTimerHandler) {
+                Random rand = new Random();
+                for(int i = 0; i < enemyCount; i++){
+                    Enemy e = (Enemy) EnemyPool.sharedEnemyPool().obtainPoolItem();
+                    e.sprite.setPosition(rand.nextInt(width), -20);
+                    e.sprite.setVisible(true);
+                    attachChild(e.sprite);
+                    enemies.add(e);
+                    setVisible(true);
+                    MoveYModifier moveDown = new MoveYModifier(7, mCamera.getHeight(), -50);
+                    e.sprite.registerEntityModifier(moveDown);
+                    enemies.clear();
+                }
+            }
+        });
+        registerUpdateHandler(spriteMoveHandler);
     }
     public void purge() {
         detachChildren();
