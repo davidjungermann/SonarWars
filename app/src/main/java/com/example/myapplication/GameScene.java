@@ -65,7 +65,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         setOnSceneTouchListener(this);
         bulletList = new LinkedList<>();
         setBackground(new Background(Color.BLACK));
-        attachChild(new EnemySpawn(3));
+        attachChild(new EnemySpawn(1));
         mCamera = MainActivity.getSharedInstance().mCamera;
         ship = Ship.getSharedInstance();
         attachChild(ship.sprite);

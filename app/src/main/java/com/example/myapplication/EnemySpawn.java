@@ -58,7 +58,7 @@ public class EnemySpawn extends Entity {
         mCamera = MainActivity.getSharedInstance().mCamera;
         width = (int) mCamera.getWidth();
 
-       TimerHandler spriteMoveHandler = new TimerHandler(3, true, new ITimerCallback() {
+       TimerHandler spriteMoveHandler = new TimerHandler(1, true, new ITimerCallback() {
             @Override
             public void onTimePassed(TimerHandler pTimerHandler) {
                 Random rand = new Random();
@@ -69,7 +69,7 @@ public class EnemySpawn extends Entity {
                     attachChild(e.sprite);
                     enemies.add(e);
                     setVisible(true);
-                    MoveYModifier moveDown = new MoveYModifier(7, mCamera.getHeight(), -50);
+                    MoveYModifier moveDown = new MoveYModifier(5, mCamera.getHeight(), -50);
                     e.sprite.registerEntityModifier(moveDown);
                     enemies.clear();
                 }
