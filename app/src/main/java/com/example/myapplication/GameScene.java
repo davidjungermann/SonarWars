@@ -23,6 +23,7 @@ import java.util.LinkedList;
 public class GameScene extends Scene implements IOnSceneTouchListener {
     Camera mCamera;
     SensorManager sensorManager;
+    MainActivity activity;
 
     public LinkedList<Bullet> bulletList;
     public Ship ship;
@@ -61,8 +62,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         sensorManager.registerListener(ProximityListener.getSharedInstance(),
                 sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY),
                 SensorManager.SENSOR_DELAY_GAME);
-
-        registerUpdateHandler(new GameLoopUpdateHandler());
+        resetValues();
     }
 
     public void moveShip() {
@@ -96,7 +96,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     }
 
     public void updatePoints() {
-        String pointsString = Integer.toString(points);
+        String pointsString = Integer.toString(points * 100);
         pointsText.setText(pointsString);
     }
 
@@ -126,6 +126,11 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
             Iterator<Enemy> eIt = EnemySpawn.getIterator();
             while (eIt.hasNext()) {
                 Enemy e = eIt.next();
+
+                if (e.sprite.getY() < 0) {
+                    // Lägg in kod till Game-Over här!
+                }
+
                 Iterator<Bullet> it = bulletList.iterator();
                 while (it.hasNext()) {
                     Bullet b = it.next();
@@ -135,19 +140,31 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                         continue;
                     }
                     if (b.sprite.collidesWith(e.sprite)) {
-                        if (!e.gotHit()) {
+                        if (e.gotHit()) {
                             EnemyPool.sharedEnemyPool().recyclePoolItem(e);
                             eIt.remove();
+                            points++;
                         }
                         BulletPool.sharedBulletPool().recyclePoolItem(b);
                         it.remove();
                         break;
                     }
+
                 }
             }
 
         }
     }
+
+    public void resetValues() {
+        bulletCount = 0;
+        points = 0;
+        ship.restart();
+        EnemySpawn.purgeAndSpawn();
+        clearChildScene();
+        registerUpdateHandler(new GameLoopUpdateHandler());
+    }
+
 }
 
 

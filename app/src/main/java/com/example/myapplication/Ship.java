@@ -3,6 +3,8 @@ package com.example.myapplication;
 import android.app.Activity;
 
 import org.andengine.engine.camera.Camera;
+import org.andengine.entity.IEntity;
+import org.andengine.entity.modifier.MoveXModifier;
 import org.andengine.entity.modifier.MoveYModifier;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.ui.activity.BaseActivity;
@@ -72,5 +74,19 @@ public class Ship {
         scene.bulletList.add(b);
         b.sprite.registerEntityModifier(mod);
         scene.bulletCount++;
+    }
+
+    public void restart() {
+        moveable = false;
+        Camera mCamera = MainActivity.getSharedInstance().mCamera;
+        MoveXModifier mod = new MoveXModifier(0.2f, sprite.getX(),
+                mCamera.getWidth() / 2 - sprite.getWidth() / 2) {
+            @Override
+            protected void onModifierFinished(IEntity pItem) {
+                super.onModifierFinished(pItem);
+                moveable = true;
+            }
+        };
+        sprite.registerEntityModifier(mod);
     }
 }

@@ -13,7 +13,7 @@ public class Enemy {
     protected final int MAX_HEALTH = 1;
 
     public Enemy() {
-        sprite = new Rectangle(0, 0, 60, 60, MainActivity.getSharedInstance().getVertexBufferObjectManager());
+        sprite = new Rectangle(0, 0, 80, 80, MainActivity.getSharedInstance().getVertexBufferObjectManager());
         sprite.setColor(Color.RED);
         init();
     }
@@ -32,14 +32,14 @@ public class Enemy {
     }
 
     // method for applying hit and checking if enemy died or not
-// returns false if enemy died
+// returns true if enemy died
     public boolean gotHit() {
         synchronized (this) {
             hp--;
             if (hp <= 0)
-                return false;
-            else
                 return true;
+            else
+                return false;
         }
     }
 }
