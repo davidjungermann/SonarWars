@@ -38,7 +38,6 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     private Text pointsText;
     private Text magazine;
     public Text reloadWarning;
-    private int score = 0;
 
 
     public GameScene() {
@@ -97,7 +96,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     }
 
     public void updatePoints() {
-        String pointsString = Integer.toString(score * 100);
+        String pointsString = Integer.toString(points);
         pointsText.setText(pointsString);
     }
 
@@ -139,8 +138,6 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                         if (!e.gotHit()) {
                             EnemyPool.sharedEnemyPool().recyclePoolItem(e);
                             eIt.remove();
-                            score++;
-                            updatePoints();
                         }
                         BulletPool.sharedBulletPool().recyclePoolItem(b);
                         it.remove();
