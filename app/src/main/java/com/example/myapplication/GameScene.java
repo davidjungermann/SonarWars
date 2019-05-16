@@ -16,6 +16,7 @@ import org.andengine.entity.text.Text;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.util.adt.color.Color;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -122,15 +123,29 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
 
     public void cleaner() {
         synchronized (this) {
-            Iterator<Bullet> it = bulletList.iterator();
-            while (it.hasNext()) {
-                Bullet b = it.next();
-                if (b.sprite.getY() >= mCamera.getHeight()) {
-                    BulletPool.sharedBulletPool().recyclePoolItem(b);
-                    it.remove();
-                    continue;
+            Iterator<Enemy> eIt = EnemySpawn.getIterator();
+            while (eIt.hasNext()) {
+                Enemy e = eIt.next();
+                Iterator<Bullet> it = bulletList.iterator();
+                while (it.hasNext()) {
+                    Bullet b = it.next();
+                    if (b.sprite.getY() >= mCamera.getHeight()) {
+                        BulletPool.sharedBulletPool().recyclePoolItem(b);
+                        it.remove();
+                        continue;
+                    }
+                    if (b.sprite.collidesWith(e.sprite)) {
+                        if (!e.gotHit()) {
+                            EnemyPool.sharedEnemyPool().recyclePoolItem(e);
+                            eIt.remove();
+                        }
+                        BulletPool.sharedBulletPool().recyclePoolItem(b);
+                        it.remove();
+                        break;
+                    }
                 }
             }
+
         }
     }
 }

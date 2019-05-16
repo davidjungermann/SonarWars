@@ -39,7 +39,7 @@ public class EnemySpawn extends Entity {
     }
 
     public EnemySpawn() {
-        enemies = new LinkedList();
+        enemies = new LinkedList<>();
         instance = this;
         spawn();
     }
@@ -52,7 +52,6 @@ public class EnemySpawn extends Entity {
             @Override
             public void onTimePassed(TimerHandler pTimerHandler) {
                 Random rand = new Random();
-
                 Enemy e = (Enemy) EnemyPool.sharedEnemyPool().obtainPoolItem();
                 e.sprite.setPosition(rand.nextInt(width), -20);
                 e.sprite.setVisible(true);
@@ -60,9 +59,8 @@ public class EnemySpawn extends Entity {
                 enemies.add(e);
                 setVisible(true);
                 MoveYModifier moveDown = new MoveYModifier(5, mCamera.getHeight(), -50);
-                enemies.clear();
                 e.sprite.registerEntityModifier(moveDown);
-
+                System.out.println(enemies.toString());
             }
         });
         registerUpdateHandler(spriteMoveHandler);
@@ -74,11 +72,6 @@ public class EnemySpawn extends Entity {
             EnemyPool.sharedEnemyPool().recyclePoolItem(e);
         }
         enemies.clear();
-    }
-
-    public static void purgeAndRestart() {
-        instance.purge();
-        instance.spawn();
     }
 
     @Override
