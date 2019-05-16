@@ -75,7 +75,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         mCamera.setHUD(hud);
 
         //Sets Magazine and ReloadWarning Text location and size
-        magazine = new Text(50, 50, MainActivity.getSharedInstance().mFont, "00",
+        magazine = new Text(50, 900, MainActivity.getSharedInstance().mFont, "00",
                 MainActivity.getSharedInstance().getVertexBufferObjectManager());
         reloadWarning = new Text(960, 540, MainActivity.getSharedInstance().mFont, "abcdef",
                 MainActivity.getSharedInstance().getVertexBufferObjectManager());
@@ -84,7 +84,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 new LoopEntityModifier(new SequenceEntityModifier(new FadeOutModifier(1), new FadeInModifier(1)));
         reloadWarning.registerEntityModifier(blinkRepeatedly);
 
-        reloadWarning.setScale(4);
+        reloadWarning.setScale(2);
         reloadWarning.setText("RELOAD");
         reloadWarning.setVisible(false);
         hud.attachChild(reloadWarning);
