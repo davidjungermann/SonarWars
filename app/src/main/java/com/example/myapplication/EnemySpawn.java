@@ -77,6 +77,10 @@ public class EnemySpawn extends Entity {
         instance.spawn();
     }
 
+    public static void enemyRestart(){
+
+    }
+
     @Override
     public void onDetached() {
         purge();

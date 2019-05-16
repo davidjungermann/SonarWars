@@ -80,7 +80,7 @@ public class Ship {
         moveable = false;
         Camera mCamera = MainActivity.getSharedInstance().mCamera;
         MoveXModifier mod = new MoveXModifier(0.2f, sprite.getX(),
-                mCamera.getWidth() / 2 - sprite.getWidth() / 2) {
+                mCamera.getCenterX()) {
             @Override
             protected void onModifierFinished(IEntity pItem) {
                 super.onModifierFinished(pItem);

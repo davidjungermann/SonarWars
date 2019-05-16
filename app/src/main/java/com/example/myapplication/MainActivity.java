@@ -49,4 +49,5 @@ public class MainActivity extends SimpleBaseGameActivity {
         mCurrentScene = scene;
         getEngine().setScene(mCurrentScene);
     }
+
 }

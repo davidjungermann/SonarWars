@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.util.Log;
 
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.camera.hud.HUD;
@@ -50,6 +51,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         ship = Ship.getSharedInstance();
         attachChild(ship.sprite);
         setHud();
+        resetValues();
         MainActivity.getSharedInstance().setCurrentScene(this);
         MainActivity.getSharedInstance().onCreateResources();
         sensorManager = (SensorManager) MainActivity.getSharedInstance()
@@ -62,7 +64,6 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         sensorManager.registerListener(ProximityListener.getSharedInstance(),
                 sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY),
                 SensorManager.SENSOR_DELAY_GAME);
-        resetValues();
     }
 
     public void moveShip() {
@@ -128,7 +129,9 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 Enemy e = eIt.next();
 
                 if (e.sprite.getY() < 0) {
-                    // Lägg in kod till Game-Over här!
+                    //setChildScene(new GameOverScene(mCamera));
+                    //EnemySpawn.getSharedInstance().purge();
+                    //clearUpdateHandlers();
                 }
 
                 Iterator<Bullet> it = bulletList.iterator();
@@ -160,11 +163,10 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         bulletCount = 0;
         points = 0;
         ship.restart();
-        EnemySpawn.purgeAndSpawn();
         clearChildScene();
+        EnemySpawn.purgeAndSpawn();
         registerUpdateHandler(new GameLoopUpdateHandler());
     }
-
 }
 
 

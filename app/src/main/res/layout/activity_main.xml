@@ -24,6 +24,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txt_azimuth"
-        android:layout_marginTop="114dp"
-        android:src="@drawable/ufo" />
+        android:layout_marginTop="114dp" />
 </RelativeLayout>
