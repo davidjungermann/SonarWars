@@ -9,10 +9,10 @@ import org.andengine.util.adt.color.Color;
 
 public class Bullet {
     public Rectangle sprite;
+
     public Bullet() {
         sprite = new Rectangle(0, 0, 10, 10, MainActivity.getSharedInstance()
                 .getVertexBufferObjectManager());
-
         sprite.setColor(Color.YELLOW);
     }
 }

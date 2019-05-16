@@ -28,8 +28,8 @@ public class Ship {
     }
 
     public void moveShip(float accelerometerSpeedX, float accelerometerSpeedY) {
-        if(!moveable)
-        return;
+        if (!moveable)
+            return;
 
         if (accelerometerSpeedX != 0 || accelerometerSpeedY != 0) {
             int lL = 0;
@@ -37,13 +37,13 @@ public class Ship {
             float newX;
 
             // Calculate New X,Y Coordinates within Limits
-            if (sprite.getX() >= lL){
-                newX = sprite.getX() + accelerometerSpeedX*5;
+            if (sprite.getX() >= lL) {
+                newX = sprite.getX() + accelerometerSpeedX * 5;
             } else {
                 newX = lL;
             }
             if (newX <= rL) {
-                newX = sprite.getX() + accelerometerSpeedX*5;
+                newX = sprite.getX() + accelerometerSpeedX * 5;
             } else {
                 newX = rL;
             }
@@ -62,17 +62,15 @@ public class Ship {
             return;
         }
         GameScene scene = (GameScene) MainActivity.getSharedInstance().mCurrentScene;
-        Bullet b = (Bullet) BulletPool.sharedBulletPool().obtainPoolItem();
+        Bullet b = BulletPool.sharedBulletPool().obtainPoolItem();
         b.sprite.setPosition(sprite.getX(), sprite.getY() + 50);
         MoveYModifier mod = new MoveYModifier(1.5f, b.sprite.getY(),
-                mCamera.getHeight() + 10);
+                mCamera.getHeight());
         b.sprite.setVisible(true);
         b.sprite.detachSelf();
         scene.attachChild(b.sprite);
         scene.bulletList.add(b);
         b.sprite.registerEntityModifier(mod);
         scene.bulletCount++;
-
-
     }
 }

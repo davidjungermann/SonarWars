@@ -5,7 +5,6 @@ import android.hardware.SensorManager;
 
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.camera.hud.HUD;
-import org.andengine.entity.modifier.DelayModifier;
 import org.andengine.entity.modifier.FadeInModifier;
 import org.andengine.entity.modifier.FadeOutModifier;
 import org.andengine.entity.modifier.LoopEntityModifier;
@@ -14,32 +13,13 @@ import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.text.Text;
-import org.andengine.entity.text.TextOptions;
 import org.andengine.input.touch.TouchEvent;
-import org.andengine.ui.activity.BaseActivity;
-import org.andengine.ui.activity.BaseGameActivity;
-import org.andengine.util.adt.align.HorizontalAlign;
-import org.andengine.util.adt.align.VerticalAlign;
-import org.andengine.util.adt.color.Color;
-
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
-import android.util.Log;
-
-import org.andengine.engine.camera.Camera;
-import org.andengine.entity.scene.Scene;
-import org.andengine.entity.scene.background.Background;
-import org.andengine.ui.activity.BaseActivity;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.util.adt.color.Color;
-
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import static java.lang.Thread.sleep;
-
 public class GameScene extends Scene implements IOnSceneTouchListener {
-    MainActivity activity;
     Camera mCamera;
     SensorManager sensorManager;
 
@@ -59,13 +39,11 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     public Text reloadWarning;
 
 
-
-
     public GameScene() {
         setOnSceneTouchListener(this);
-        bulletList = new LinkedList<>();
+        bulletList = new LinkedList();
         setBackground(new Background(Color.BLACK));
-        attachChild(new EnemySpawn(1));
+        attachChild(new EnemySpawn());
         mCamera = MainActivity.getSharedInstance().mCamera;
         ship = Ship.getSharedInstance();
         attachChild(ship.sprite);
@@ -126,7 +104,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         int inMagazine = 20 - bulletCount;
         String magString = Integer.toString(inMagazine);
         magazine.setText(magString);
-        if(Integer.parseInt(magString) <= 0) {
+        if (Integer.parseInt(magString) <= 0) {
             reloadWarning.setVisible(true);
         }
     }
@@ -144,19 +122,14 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
 
     public void cleaner() {
         synchronized (this) {
-            Iterator<Enemy> eIt = EnemySpawn.getIterator();
-            while (eIt.hasNext()) {
-                Enemy e = eIt.next();
-                Iterator<Bullet> it = bulletList.iterator();
-                while (it.hasNext()) {
-                    Bullet b = it.next();
-                    if (b.sprite.getY() <= -b.sprite.getHeight()) {
-                        BulletPool.sharedBulletPool().recyclePoolItem(b);
-                        it.remove();
-                        continue;
-                    }
+            Iterator<Bullet> it = bulletList.iterator();
+            while (it.hasNext()) {
+                Bullet b = it.next();
+                if (b.sprite.getY() >= mCamera.getHeight()) {
+                    BulletPool.sharedBulletPool().recyclePoolItem(b);
+                    it.remove();
+                    continue;
                 }
-
             }
         }
     }

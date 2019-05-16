@@ -34,49 +34,40 @@ public class EnemySpawn extends Entity {
         return instance;
     }
 
-    public static boolean isEmpty() {
-        if (instance.enemies.size() == 0)
-            return true;
-        return false;
-    }
-
     public static Iterator getIterator() {
         return instance.enemies.iterator();
     }
 
-    public EnemySpawn(int x) {
+    public EnemySpawn() {
         enemies = new LinkedList();
         instance = this;
-        enemyCount = x;
-        restart();
+        spawn();
     }
 
-    public void restart(){
-        enemies.clear();
-        clearEntityModifiers();
-        clearUpdateHandlers();
+    public void spawn() {
         mCamera = MainActivity.getSharedInstance().mCamera;
         width = (int) mCamera.getWidth();
 
-       TimerHandler spriteMoveHandler = new TimerHandler(1, true, new ITimerCallback() {
+        TimerHandler spriteMoveHandler = new TimerHandler(1, true, new ITimerCallback() {
             @Override
             public void onTimePassed(TimerHandler pTimerHandler) {
                 Random rand = new Random();
-                for(int i = 0; i < enemyCount; i++){
-                    Enemy e = (Enemy) EnemyPool.sharedEnemyPool().obtainPoolItem();
-                    e.sprite.setPosition(rand.nextInt(width), -20);
-                    e.sprite.setVisible(true);
-                    attachChild(e.sprite);
-                    enemies.add(e);
-                    setVisible(true);
-                    MoveYModifier moveDown = new MoveYModifier(5, mCamera.getHeight(), -50);
-                    e.sprite.registerEntityModifier(moveDown);
-                    enemies.clear();
-                }
+
+                Enemy e = (Enemy) EnemyPool.sharedEnemyPool().obtainPoolItem();
+                e.sprite.setPosition(rand.nextInt(width), -20);
+                e.sprite.setVisible(true);
+                attachChild(e.sprite);
+                enemies.add(e);
+                setVisible(true);
+                MoveYModifier moveDown = new MoveYModifier(5, mCamera.getHeight(), -50);
+                enemies.clear();
+                e.sprite.registerEntityModifier(moveDown);
+
             }
         });
         registerUpdateHandler(spriteMoveHandler);
     }
+
     public void purge() {
         detachChildren();
         for (Enemy e : enemies) {
@@ -87,7 +78,7 @@ public class EnemySpawn extends Entity {
 
     public static void purgeAndRestart() {
         instance.purge();
-        instance.restart();
+        instance.spawn();
     }
 
     @Override

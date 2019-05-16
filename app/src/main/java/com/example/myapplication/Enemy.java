@@ -10,7 +10,7 @@ public class Enemy {
     public Rectangle sprite;
     public int hp;
     //the max health for each enemy
-    protected final int MAX_HEALTH = 2;
+    protected final int MAX_HEALTH = 1;
 
     public Enemy() {
         sprite = new Rectangle(0, 0, 60, 60, MainActivity.getSharedInstance().getVertexBufferObjectManager());

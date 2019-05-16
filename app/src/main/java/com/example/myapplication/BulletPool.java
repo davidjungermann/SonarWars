@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
+import android.util.Log;
+
 import org.andengine.util.adt.pool.GenericPool;
 
-public class BulletPool extends GenericPool {
+public class BulletPool extends GenericPool<Bullet> {
 
     public static BulletPool instance;
 
@@ -26,5 +28,6 @@ public class BulletPool extends GenericPool {
         b.sprite.clearUpdateHandlers();
         b.sprite.setVisible(false);
         b.sprite.detachSelf();
+        Log.v("SonarWars", "BulletPool onHandleRecycleItem()");
     }
 }
