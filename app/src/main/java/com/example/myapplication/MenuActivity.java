@@ -17,6 +17,14 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu2);
         Button playGame = findViewById(R.id.button2);
+        Button tutorial = (Button)findViewById(R.id.button3);
+
+        tutorial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MenuActivity.this, TutorialActivity.class));
+            }
+        });
 
         playGame.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -30,4 +38,6 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+
 }
