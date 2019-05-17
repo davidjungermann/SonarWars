@@ -10,6 +10,7 @@ public class GameLoopUpdateHandler implements IUpdateHandler {
         ((GameScene) MainActivity.getSharedInstance().mCurrentScene).cleaner();
         ((GameScene) MainActivity.getSharedInstance().mCurrentScene).updateMagazine();
         ((GameScene) MainActivity.getSharedInstance().mCurrentScene).updatePoints();
+        ((GameScene) MainActivity.getSharedInstance().mCurrentScene).updateBomb();
     }
 
     @Override

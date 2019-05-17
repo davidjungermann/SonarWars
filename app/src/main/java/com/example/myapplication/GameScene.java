@@ -2,8 +2,6 @@ package com.example.myapplication;
 
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
-import android.util.Log;
-
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.entity.modifier.FadeInModifier;
@@ -24,7 +22,6 @@ import java.util.LinkedList;
 public class GameScene extends Scene implements IOnSceneTouchListener {
     Camera mCamera;
     SensorManager sensorManager;
-    MainActivity activity;
 
     public LinkedList<Bullet> bulletList;
     public Ship ship;
@@ -35,10 +32,13 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     int proximity;
 
     float accelerometerSpeedX;
+    float accelerometerSpeedY;
+    int bombCounter = 3;
 
     private Text pointsText;
     private Text magazine;
     public Text reloadWarning;
+    public Text bombText;
 
 
     public GameScene() {
@@ -89,6 +89,11 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         hud.attachChild(reloadWarning);
         hud.attachChild(magazine);
 
+        //Sets bomb counter
+        bombText = new Text(mCamera.getWidth() - 50, 50, MainActivity.getSharedInstance().mFont3, "00",
+                MainActivity.getSharedInstance().getVertexBufferObjectManager());
+        hud.attachChild(bombText);
+
         //Sets Points
         pointsText = new Text(50, mCamera.getHeight() - 50, MainActivity.getSharedInstance().mFont2, "000000",
                 MainActivity.getSharedInstance().getVertexBufferObjectManager());
@@ -108,6 +113,11 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         if (Integer.parseInt(magString) <= 0) {
             reloadWarning.setVisible(true);
         }
+    }
+
+    public void updateBomb(){
+        String bombString = Integer.toString(bombCounter);
+        bombText.setText(bombString);
     }
 
     @Override
@@ -130,7 +140,10 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 if (e.sprite.getY() < 0) {
                     //Här borde det bli Game Over
                 }
-
+                if(accelerometerSpeedY < -8 && bombCounter > 0){
+                    EnemySpawn.getSharedInstance().purge();
+                    bombCounter--;
+                }
                 Iterator<Bullet> it = bulletList.iterator();
                 while (it.hasNext()) {
                     Bullet b = it.next();

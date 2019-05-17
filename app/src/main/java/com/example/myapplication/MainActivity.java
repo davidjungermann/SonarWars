@@ -22,6 +22,7 @@ public class MainActivity extends SimpleBaseGameActivity {
     public Camera mCamera;
     public Font mFont;
     public Font mFont2;
+    public Font mFont3;
 
     //A reference to the current scene
     public Scene mCurrentScene;
@@ -34,10 +35,12 @@ public class MainActivity extends SimpleBaseGameActivity {
     }
 
     protected void onCreateResources() {
-        mFont = FontFactory.create(this.getFontManager(), this.getTextureManager(), 256, 512, Typeface.create(Typeface.MONOSPACE, Typeface.BOLD), 72, android.graphics.Color.rgb(255, 255, 51));
-        mFont2 = FontFactory.create(this.getFontManager(), this.getTextureManager(), 256, 512, Typeface.create(Typeface.MONOSPACE, Typeface.BOLD), 52, android.graphics.Color.rgb(255, 255, 51));
+        mFont = FontFactory.create(this.getFontManager(), this.getTextureManager(), 256, 512, Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 72, android.graphics.Color.rgb(255, 255, 51));
+        mFont2 = FontFactory.create(this.getFontManager(), this.getTextureManager(), 256, 512, Typeface.create(Typeface.DEFAULT, Typeface.NORMAL), 52, Color.GREEN);
+        mFont3 = FontFactory.create(this.getFontManager(), this.getTextureManager(), 256, 512, Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 72, Color.BLUE);
         mFont.load();
         mFont2.load();
+        mFont3.load();
     }
 
     protected Scene onCreateScene() {
