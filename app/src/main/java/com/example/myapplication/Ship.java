@@ -13,7 +13,7 @@ public class Ship {
     public Rectangle sprite;
     public static Ship instance;
     Camera mCamera;
-    private boolean moveable;
+    private boolean movable;
 
     public static Ship getSharedInstance() {
         if (instance == null)
@@ -26,11 +26,11 @@ public class Ship {
                 .getVertexBufferObjectManager());
         mCamera = MainActivity.getSharedInstance().mCamera;
         sprite.setPosition(mCamera.getCenterX(), 20);
-        moveable = true;
+        movable = true;
     }
 
     public void moveShip(float accelerometerSpeedX) {
-        if (!moveable)
+        if (!movable)
             return;
 
         if (accelerometerSpeedX != 0) {
@@ -60,7 +60,7 @@ public class Ship {
     }
 
     public void shoot() {
-        if (!moveable) {
+        if (!movable) {
             return;
         }
         GameScene scene = (GameScene) MainActivity.getSharedInstance().mCurrentScene;
@@ -77,14 +77,14 @@ public class Ship {
     }
 
     public void restart() {
-        moveable = false;
+        movable = false;
         Camera mCamera = MainActivity.getSharedInstance().mCamera;
         MoveXModifier mod = new MoveXModifier(0.2f, sprite.getX(),
                 mCamera.getCenterX()) {
             @Override
             protected void onModifierFinished(IEntity pItem) {
                 super.onModifierFinished(pItem);
-                moveable = true;
+                movable = true;
             }
         };
         sprite.registerEntityModifier(mod);
