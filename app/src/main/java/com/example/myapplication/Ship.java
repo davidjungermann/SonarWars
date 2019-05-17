@@ -29,23 +29,23 @@ public class Ship {
         moveable = true;
     }
 
-    public void moveShip(float accelerometerSpeedX, float accelerometerSpeedY) {
+    public void moveShip(float accelerometerSpeedX) {
         if (!moveable)
             return;
 
-        if (accelerometerSpeedX != 0 || accelerometerSpeedY != 0) {
-            int lL = 0;
-            int rL = (int) mCamera.getWidth();
+        if (accelerometerSpeedX != 0) {
+            int lL = 290;
+            int rL = (int) mCamera.getWidth() - 290;
             float newX;
 
             // Calculate New X,Y Coordinates within Limits
             if (sprite.getX() >= lL) {
-                newX = sprite.getX() + accelerometerSpeedX * 5;
+                newX = sprite.getX() + accelerometerSpeedX;
             } else {
                 newX = lL;
             }
             if (newX <= rL) {
-                newX = sprite.getX() + accelerometerSpeedX * 5;
+                newX = sprite.getX() + accelerometerSpeedX;
             } else {
                 newX = rL;
             }
@@ -67,7 +67,7 @@ public class Ship {
         Bullet b = BulletPool.sharedBulletPool().obtainPoolItem();
         b.sprite.setPosition(sprite.getX(), sprite.getY() + 50);
         MoveYModifier mod = new MoveYModifier(1.5f, b.sprite.getY(),
-                mCamera.getHeight());
+                mCamera.getHeight() + 10);
         b.sprite.setVisible(true);
         b.sprite.detachSelf();
         scene.attachChild(b.sprite);

@@ -35,7 +35,6 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     int proximity;
 
     float accelerometerSpeedX;
-    float accelerometerSpeedY;
 
     private Text pointsText;
     private Text magazine;
@@ -67,7 +66,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     }
 
     public void moveShip() {
-        ship.moveShip(accelerometerSpeedX, accelerometerSpeedY);
+        ship.moveShip(3 * accelerometerSpeedX);
     }
 
     public void setHud() {
@@ -75,9 +74,9 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         mCamera.setHUD(hud);
 
         //Sets Magazine and ReloadWarning Text location and size
-        magazine = new Text(50, 900, MainActivity.getSharedInstance().mFont, "00",
+        magazine = new Text(50, 50, MainActivity.getSharedInstance().mFont, "00",
                 MainActivity.getSharedInstance().getVertexBufferObjectManager());
-        reloadWarning = new Text(960, 540, MainActivity.getSharedInstance().mFont, "abcdef",
+        reloadWarning = new Text(mCamera.getCenterX(), mCamera.getCenterY(), MainActivity.getSharedInstance().mFont, "abcdef",
                 MainActivity.getSharedInstance().getVertexBufferObjectManager());
         //Add flashing effect
         LoopEntityModifier blinkRepeatedly =
@@ -91,13 +90,13 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         hud.attachChild(magazine);
 
         //Sets Points
-        pointsText = new Text(1800, 900, MainActivity.getSharedInstance().mFont, "000000",
+        pointsText = new Text(50, mCamera.getHeight() - 50, MainActivity.getSharedInstance().mFont2, "000000",
                 MainActivity.getSharedInstance().getVertexBufferObjectManager());
         hud.attachChild(pointsText);
     }
 
     public void updatePoints() {
-        String pointsString = Integer.toString(points * 100);
+        String pointsString = Integer.toString(points * 10);
         pointsText.setText(pointsString);
     }
 
@@ -129,9 +128,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 Enemy e = eIt.next();
 
                 if (e.sprite.getY() < 0) {
-                    //setChildScene(new GameOverScene(mCamera));
-                    //EnemySpawn.getSharedInstance().purge();
-                    //clearUpdateHandlers();
+                    //Här borde det bli Game Over
                 }
 
                 Iterator<Bullet> it = bulletList.iterator();
@@ -167,6 +164,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         EnemySpawn.purgeAndSpawn();
         registerUpdateHandler(new GameLoopUpdateHandler());
     }
+
 }
 
 

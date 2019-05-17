@@ -4,22 +4,10 @@ import org.andengine.engine.camera.Camera;
 import org.andengine.engine.handler.timer.ITimerCallback;
 import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.entity.Entity;
-import org.andengine.entity.IEntity;
-import org.andengine.entity.modifier.DelayModifier;
-import org.andengine.entity.modifier.IEntityModifier;
-import org.andengine.entity.modifier.LoopEntityModifier;
-import org.andengine.entity.modifier.MoveModifier;
-import org.andengine.entity.modifier.MoveXModifier;
 import org.andengine.entity.modifier.MoveYModifier;
-import org.andengine.entity.modifier.ParallelEntityModifier;
-import org.andengine.entity.modifier.SequenceEntityModifier;
-import org.andengine.util.modifier.IModifier;
-
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
-
-import static java.lang.Thread.sleep;
 
 public class EnemySpawn extends Entity {
 
@@ -47,12 +35,15 @@ public class EnemySpawn extends Entity {
         mCamera = MainActivity.getSharedInstance().mCamera;
         width = (int) mCamera.getWidth();
 
-        TimerHandler spriteMoveHandler = new TimerHandler(2, true, new ITimerCallback() {
+        TimerHandler spriteMoveHandler = new TimerHandler(1, true, new ITimerCallback() {
             @Override
             public void onTimePassed(TimerHandler pTimerHandler) {
                 Random rand = new Random();
-                Enemy e = (Enemy) EnemyPool.sharedEnemyPool().obtainPoolItem();
-                e.sprite.setPosition(rand.nextInt(width), -20);
+                Enemy e = EnemyPool.sharedEnemyPool().obtainPoolItem();
+                int low = 290;
+                int high = (int) mCamera.getWidth() - 290;
+                int result = rand.nextInt(high-low) + low;
+                e.sprite.setPosition(result, -20);
                 e.sprite.setVisible(true);
                 attachChild(e.sprite);
                 enemies.add(e);
@@ -77,13 +68,10 @@ public class EnemySpawn extends Entity {
         instance.spawn();
     }
 
-    public static void enemyRestart(){
-
-    }
-
     @Override
     public void onDetached() {
         purge();
         super.onDetached();
     }
+
 }

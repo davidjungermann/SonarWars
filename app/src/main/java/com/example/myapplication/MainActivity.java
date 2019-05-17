@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 
 import org.andengine.engine.camera.Camera;
+import org.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
+import org.andengine.engine.options.resolutionpolicy.FixedResolutionPolicy;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
@@ -19,6 +21,7 @@ public class MainActivity extends SimpleBaseGameActivity {
     static final int CAMERA_HEIGHT = 1080;
     public Camera mCamera;
     public Font mFont;
+    public Font mFont2;
 
     //A reference to the current scene
     public Scene mCurrentScene;
@@ -27,12 +30,14 @@ public class MainActivity extends SimpleBaseGameActivity {
     public EngineOptions onCreateEngineOptions() {
         instance = this;
         mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
-        return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), mCamera);
+        return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new FixedResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), mCamera);
     }
 
     protected void onCreateResources() {
         mFont = FontFactory.create(this.getFontManager(), this.getTextureManager(), 256, 512, Typeface.create(Typeface.MONOSPACE, Typeface.BOLD), 72, android.graphics.Color.rgb(255, 255, 51));
+        mFont2 = FontFactory.create(this.getFontManager(), this.getTextureManager(), 256, 512, Typeface.create(Typeface.MONOSPACE, Typeface.BOLD), 52, android.graphics.Color.rgb(255, 255, 51));
         mFont.load();
+        mFont2.load();
     }
 
     protected Scene onCreateScene() {
