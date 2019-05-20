@@ -127,7 +127,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         if (!CoolDown.getSharedInstance().checkValidity()) {
             return false;
         }
-        if (bulletCount < 20) {
+        if (bulletCount < 20 && proximity > 0) {
             ship.shoot();
         }
         return true;
@@ -191,6 +191,10 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         Ship.instance = null;
         EnemyPool.instance = null;
         BulletPool.instance = null;
+    }
+
+    public int getPoints() {
+        return points;
     }
 
 }

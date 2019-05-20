@@ -19,6 +19,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu2);
         Button playGame = findViewById(R.id.button2);
         Button tutorial = (Button)findViewById(R.id.button3);
+        Button highScore = findViewById(R.id.button);
 
         final MediaPlayer music = MediaPlayer.create(MenuActivity.this,R.raw.themesong);
         music.start();
@@ -35,6 +36,13 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v){
                 startActivity(new Intent(MenuActivity.this, MainActivity.class));
                 music.stop();
+
+            }
+        });
+
+        highScore.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(MenuActivity.this, HighscoreActivity.class));
 
             }
         });
