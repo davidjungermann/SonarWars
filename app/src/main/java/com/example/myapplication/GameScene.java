@@ -4,6 +4,8 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.util.Log;
 
+import org.andengine.audio.sound.Sound;
+import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.entity.modifier.FadeInModifier;
@@ -18,6 +20,7 @@ import org.andengine.input.touch.TouchEvent;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.util.adt.color.Color;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -127,7 +130,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         if (!CoolDown.getSharedInstance().checkValidity()) {
             return false;
         }
-        if (bulletCount < 20 && proximity > 0) {
+        if (bulletCount < 20) {
             ship.shoot();
         }
         return true;
@@ -191,10 +194,6 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         Ship.instance = null;
         EnemyPool.instance = null;
         BulletPool.instance = null;
-    }
-
-    public int getPoints() {
-        return points;
     }
 
 }

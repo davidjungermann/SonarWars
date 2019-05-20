@@ -2,15 +2,10 @@ package com.example.myapplication;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-
-import org.andengine.audio.music.Music;
-import org.andengine.audio.music.MusicFactory;
+import org.andengine.audio.sound.Sound;
 import org.andengine.engine.camera.Camera;
-import org.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
 import org.andengine.engine.options.resolutionpolicy.FixedResolutionPolicy;
-import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.scene.Scene;
-import org.andengine.entity.scene.background.Background;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.entity.util.FPSLogger;
@@ -18,7 +13,6 @@ import org.andengine.opengl.font.Font;
 import org.andengine.opengl.font.FontFactory;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 
-import java.io.IOException;
 
 public class MainActivity extends SimpleBaseGameActivity {
     static final int CAMERA_WIDTH = 1920;
