@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.util.Log;
+
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.entity.modifier.FadeInModifier;
@@ -125,7 +127,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         if (!CoolDown.getSharedInstance().checkValidity()) {
             return false;
         }
-        if (bulletCount < 20 && proximity > 0) {
+        if (bulletCount < 20) {
             ship.shoot();
         }
         return true;
@@ -176,6 +178,19 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         clearChildScene();
         EnemySpawn.purgeAndSpawn();
         registerUpdateHandler(new GameLoopUpdateHandler());
+    }
+
+    public void detach() {
+        Log.v("SonarWars", "GameScene onDetached()");
+        clearUpdateHandlers();
+        for (Bullet b : bulletList) {
+            BulletPool.sharedBulletPool().recyclePoolItem(b);
+        }
+        bulletList.clear();
+        detachChildren();
+        Ship.instance = null;
+        EnemyPool.instance = null;
+        BulletPool.instance = null;
     }
 
 }

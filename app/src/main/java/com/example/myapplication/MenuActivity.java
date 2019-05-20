@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,10 @@ public class MenuActivity extends AppCompatActivity {
         Button playGame = findViewById(R.id.button2);
         Button tutorial = (Button)findViewById(R.id.button3);
 
+        final MediaPlayer music = MediaPlayer.create(MenuActivity.this,R.raw.themesong);
+        music.start();
+        music.setLooping(true);
+
         tutorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -29,15 +34,9 @@ public class MenuActivity extends AppCompatActivity {
         playGame.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 startActivity(new Intent(MenuActivity.this, MainActivity.class));
+                music.stop();
 
             }
         });
     }
-
-    private void openGame(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-
 }

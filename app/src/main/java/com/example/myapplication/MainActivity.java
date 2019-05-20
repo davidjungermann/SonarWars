@@ -3,6 +3,8 @@ package com.example.myapplication;
 import android.graphics.Color;
 import android.graphics.Typeface;
 
+import org.andengine.audio.music.Music;
+import org.andengine.audio.music.MusicFactory;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
 import org.andengine.engine.options.resolutionpolicy.FixedResolutionPolicy;
@@ -15,6 +17,8 @@ import org.andengine.entity.util.FPSLogger;
 import org.andengine.opengl.font.Font;
 import org.andengine.opengl.font.FontFactory;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
+
+import java.io.IOException;
 
 public class MainActivity extends SimpleBaseGameActivity {
     static final int CAMERA_WIDTH = 1920;
@@ -56,6 +60,16 @@ public class MainActivity extends SimpleBaseGameActivity {
     public void setCurrentScene(Scene scene) {
         mCurrentScene = scene;
         getEngine().setScene(mCurrentScene);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mCurrentScene instanceof GameScene)
+            ((GameScene) mCurrentScene).detach();
+
+        mCurrentScene = null;
+        SensorListener.instance = null;
+        super.onBackPressed();
     }
 
 }
