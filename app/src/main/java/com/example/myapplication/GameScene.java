@@ -8,17 +8,29 @@ import org.andengine.audio.sound.Sound;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.camera.hud.HUD;
+import org.andengine.engine.handler.timer.ITimerCallback;
+import org.andengine.engine.handler.timer.TimerHandler;
+import org.andengine.entity.IEntity;
+import org.andengine.entity.IEntityFactory;
 import org.andengine.entity.modifier.FadeInModifier;
 import org.andengine.entity.modifier.FadeOutModifier;
 import org.andengine.entity.modifier.LoopEntityModifier;
 import org.andengine.entity.modifier.SequenceEntityModifier;
+import org.andengine.entity.particle.ParticleSystem;
+import org.andengine.entity.particle.emitter.PointParticleEmitter;
+import org.andengine.entity.particle.initializer.VelocityParticleInitializer;
+import org.andengine.entity.particle.modifier.AlphaParticleModifier;
+import org.andengine.entity.particle.modifier.RotationParticleModifier;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.text.Text;
 import org.andengine.input.touch.TouchEvent;
+import org.andengine.ui.activity.BaseActivity;
 import org.andengine.ui.activity.BaseGameActivity;
+import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.adt.color.Color;
+import org.andengine.entity.primitive.Rectangle;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -162,6 +174,8 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                     }
                     if (b.sprite.collidesWith(e.sprite)) {
                         if (e.gotHit()) {
+                            createExplosion(e.sprite.getX(), e.sprite.getY(), e.sprite.getParent(), MainActivity.getSharedInstance());
+
                             EnemyPool.sharedEnemyPool().recyclePoolItem(e);
                             eIt.remove();
                             points = points + 10;
@@ -197,6 +211,47 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         Ship.instance = null;
         EnemyPool.instance = null;
         BulletPool.instance = null;
+    }
+
+    private void createExplosion(final float posX, final float posY, final IEntity target, final SimpleBaseGameActivity activity) {
+        int mNumPart = 15;
+        int mTimePart = 2;
+
+        PointParticleEmitter particleEmitter = new PointParticleEmitter(posX,posY);
+        IEntityFactory recFact = new IEntityFactory() {
+            @Override
+            public Rectangle create(float pX, float pY) {
+                Rectangle rect = new Rectangle(posX, posY, 20, 20, activity.getVertexBufferObjectManager());
+                rect.setColor(Color.YELLOW);
+                return rect;
+            }
+        };
+
+        final ParticleSystem<Rectangle> particleSystem = new ParticleSystem<Rectangle>(
+                recFact, particleEmitter, 500, 500, mNumPart);
+
+        particleSystem
+                .addParticleInitializer(new VelocityParticleInitializer<Rectangle>(
+                        -50, 50, -50, 50));
+
+        particleSystem
+                .addParticleModifier(new AlphaParticleModifier<Rectangle>(0,
+                        0.6f * mTimePart, 1, 0));
+        particleSystem
+                .addParticleModifier(new RotationParticleModifier<Rectangle>(0,
+                        mTimePart, 0, 360));
+
+        target.attachChild(particleSystem);
+        target.registerUpdateHandler(new TimerHandler(mTimePart,
+                new ITimerCallback() {
+                    @Override
+                    public void onTimePassed(final TimerHandler pTimerHandler) {
+                        particleSystem.detachSelf();
+                        target.sortChildren();
+                        target.unregisterUpdateHandler(pTimerHandler);
+                    }
+                }));
+
     }
 
 }

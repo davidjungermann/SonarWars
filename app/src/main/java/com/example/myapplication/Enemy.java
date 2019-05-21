@@ -6,7 +6,9 @@ import org.andengine.entity.modifier.RotationModifier;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.util.adt.color.Color;
 
+
 public class Enemy {
+
     public Rectangle sprite;
     public int hp;
     //the max health for each enemy
