@@ -3,7 +3,6 @@ package com.example.myapplication;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.DelayModifier;
 import org.andengine.entity.modifier.IEntityModifier;
-import org.andengine.entity.modifier.MoveXModifier;
 import org.andengine.entity.modifier.MoveYModifier;
 import org.andengine.entity.scene.Scene;;
 import org.andengine.entity.text.Text;
@@ -11,7 +10,6 @@ import org.andengine.util.modifier.IModifier;
 
 public class StartScene extends Scene {
     MainActivity activity;
-    final int MENU_START = 0;
 
     public StartScene() {
         activity = MainActivity.getSharedInstance();
@@ -23,7 +21,7 @@ public class StartScene extends Scene {
 
     }
 
-    public void loadResources(){
+    public void loadResources() {
         DelayModifier dMod = new DelayModifier(2, new IEntityModifier.IEntityModifierListener() {
             @Override
             public void onModifierStarted(IModifier arg0, IEntity arg1) {

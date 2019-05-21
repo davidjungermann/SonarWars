@@ -142,9 +142,9 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 Enemy e = eIt.next();
 
                 if (e.sprite.getY() < 0) {
-                    //detach();
-                    //EnemySpawn.getSharedInstance().purge();
-                    //activity.setCurrentScene(new GameOverScene());
+                    clearUpdateHandlers();
+                    detach();
+                    setChildScene(new GameOverScene());
                 }
                 if(accelerometerSpeedY < -8 && bombCounter > 0){
                     EnemySpawn.getSharedInstance().purge();
