@@ -16,7 +16,7 @@ public class ProximityListener implements SensorEventListener {
 
     public ProximityListener() {
         instance = this;
-        scene = (GameScene) MainActivity.getSharedInstance().mCurrentScene;
+        scene = (GameScene)MainActivity.getSharedInstance().mCurrentScene;
     }
 
     @Override

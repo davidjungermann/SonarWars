@@ -1,34 +1,38 @@
 package com.example.myapplication;
 
-import org.andengine.entity.scene.background.Background;
-import org.andengine.entity.scene.menu.MenuScene;
-import org.andengine.entity.scene.menu.item.IMenuItem;
-import org.andengine.entity.scene.menu.item.TextMenuItem;
-import org.andengine.util.adt.color.Color;
+import org.andengine.entity.IEntity;
+import org.andengine.entity.modifier.DelayModifier;
+import org.andengine.entity.modifier.IEntityModifier;
+import org.andengine.entity.modifier.MoveXModifier;
+import org.andengine.entity.scene.Scene;;
+import org.andengine.entity.text.Text;
+import org.andengine.util.modifier.IModifier;
 
-public class StartScene extends MenuScene implements MenuScene.IOnMenuItemClickListener {
+public class StartScene extends Scene {
     MainActivity activity;
     final int MENU_START = 0;
 
     public StartScene() {
-        super(MainActivity.getSharedInstance().mCamera);
         activity = MainActivity.getSharedInstance();
+        Text getReady = new Text(0, 0, activity.mFont, activity.getString(R.string.getready), activity.getVertexBufferObjectManager());
+        getReady.setPosition(0, activity.mCamera.getCenterY());
+        attachChild(getReady);
+        getReady.registerEntityModifier(new MoveXModifier(1, getReady.getX(), activity.mCamera.getCenterX()));
 
-        setBackground(new Background(Color.BLACK));
-        IMenuItem startButton = new TextMenuItem(MENU_START, activity.mFont, activity.getString(R.string.start), activity.getVertexBufferObjectManager());
-        startButton.setPosition(mCamera.getCenterX(), mCamera.getCenterY());
-        addMenuItem(startButton);
+        loadResources();
 
-        setOnMenuItemClickListener(this);
     }
 
-    public boolean onMenuItemClicked(MenuScene arg0, IMenuItem arg1, float arg2, float arg3) {
-        switch (arg1.getID()) {
-            case MENU_START:
+    public void loadResources(){
+        DelayModifier dMod = new DelayModifier(3, new IEntityModifier.IEntityModifierListener() {
+            @Override
+            public void onModifierStarted(IModifier arg0, IEntity arg1) {
+            }
+
+            public void onModifierFinished(IModifier arg0, IEntity arg1) {
                 activity.setCurrentScene(new GameScene());
-            default:
-                break;
-        }
-        return false;
+            }
+        });
+        registerEntityModifier(dMod);
     }
 }

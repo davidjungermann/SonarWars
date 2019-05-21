@@ -18,7 +18,7 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu2);
         Button playGame = findViewById(R.id.button2);
-        Button tutorial = (Button)findViewById(R.id.button3);
+        Button tutorial = findViewById(R.id.button3);
         Button highScore = findViewById(R.id.button);
 
         final MediaPlayer music = MediaPlayer.create(MenuActivity.this,R.raw.themesong);

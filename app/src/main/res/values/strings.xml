@@ -7,4 +7,5 @@
     <string name="title_activity_sensor">SensorActivity</string>
     <string name="score">Score: </string>
     <string name="gameover">GAME OVER</string>
+    <string name="getready">Get ready!</string>
 </resources>

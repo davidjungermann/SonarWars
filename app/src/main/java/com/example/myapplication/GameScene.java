@@ -34,7 +34,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
 
     public int bulletCount;
     public int points = 0;
-    int proximity;
+    float proximity;
 
     float accelerometerSpeedX;
     float accelerometerSpeedY;
@@ -60,13 +60,13 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         MainActivity.getSharedInstance().onCreateResources();
         sensorManager = (SensorManager) MainActivity.getSharedInstance()
                 .getSystemService(BaseGameActivity.SENSOR_SERVICE);
-        SensorListener.getSharedInstance();
-        sensorManager.registerListener(SensorListener.getSharedInstance(),
-                sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-                SensorManager.SENSOR_DELAY_GAME);
         ProximityListener.getSharedInstance();
         sensorManager.registerListener(ProximityListener.getSharedInstance(),
                 sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY),
+                SensorManager.SENSOR_DELAY_GAME);
+        SensorListener.getSharedInstance();
+        sensorManager.registerListener(SensorListener.getSharedInstance(),
+                sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                 SensorManager.SENSOR_DELAY_GAME);
     }
 
