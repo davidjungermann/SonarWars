@@ -19,6 +19,7 @@ import org.andengine.entity.text.Text;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.util.adt.color.Color;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -119,7 +120,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         }
     }
 
-    public void updateBomb(){
+    public void updateBomb() {
         String bombString = Integer.toString(bombCounter);
         bombText.setText(bombString);
     }
@@ -142,11 +143,12 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 Enemy e = eIt.next();
 
                 if (e.sprite.getY() < 0) {
-                    clearUpdateHandlers();
                     detach();
+                    SensorListener.instance = null;
+                    ProximityListener.instance = null;
                     setChildScene(new GameOverScene());
                 }
-                if(accelerometerSpeedY < -8 && bombCounter > 0){
+                if (accelerometerSpeedY < -8 && bombCounter > 0) {
                     EnemySpawn.getSharedInstance().purge();
                     bombCounter--;
                 }
