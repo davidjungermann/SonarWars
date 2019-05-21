@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import org.andengine.audio.sound.Sound;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.resolutionpolicy.FixedResolutionPolicy;
 import org.andengine.entity.scene.Scene;
