@@ -4,6 +4,7 @@ import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.DelayModifier;
 import org.andengine.entity.modifier.IEntityModifier;
 import org.andengine.entity.modifier.MoveXModifier;
+import org.andengine.entity.modifier.MoveYModifier;
 import org.andengine.entity.scene.Scene;;
 import org.andengine.entity.text.Text;
 import org.andengine.util.modifier.IModifier;
@@ -15,10 +16,9 @@ public class StartScene extends Scene {
     public StartScene() {
         activity = MainActivity.getSharedInstance();
         Text getReady = new Text(0, 0, activity.mFont, activity.getString(R.string.getready), activity.getVertexBufferObjectManager());
-        getReady.setPosition(0, activity.mCamera.getCenterY());
+        getReady.setPosition(activity.mCamera.getCenterX(), activity.mCamera.getHeight());
         attachChild(getReady);
-        getReady.registerEntityModifier(new MoveXModifier(1, getReady.getX(), activity.mCamera.getCenterX()));
-
+        getReady.registerEntityModifier(new MoveYModifier(1, getReady.getY(), activity.mCamera.getCenterY()));
         loadResources();
 
     }

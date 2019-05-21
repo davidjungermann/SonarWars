@@ -42,6 +42,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     private Text magazine;
     public Text reloadWarning;
     public Text bombText;
+    public MainActivity activity;
 
 
     public GameScene() {
@@ -141,7 +142,9 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 Enemy e = eIt.next();
 
                 if (e.sprite.getY() < 0) {
-                    //Här borde det bli Game Over
+                    //detach();
+                    //EnemySpawn.getSharedInstance().purge();
+                    //activity.setCurrentScene(new GameOverScene());
                 }
                 if(accelerometerSpeedY < -8 && bombCounter > 0){
                     EnemySpawn.getSharedInstance().purge();
