@@ -18,7 +18,6 @@ public class GameOverScene extends MenuScene implements MenuScene.IOnMenuItemCli
         setBackground(new Background(Color.BLACK));
         GameScene scene = (GameScene) activity.mCurrentScene;
         int score = scene.points;
-
         IMenuItem startButton = new TextMenuItem(MENU_START, activity.mFont, "Game over!", activity.getVertexBufferObjectManager());
         IMenuItem replayButton = new TextMenuItem(MENU_START, activity.mFont, "Replay", activity.getVertexBufferObjectManager());
         Text result = new Text(0, 0, activity.mFont,
