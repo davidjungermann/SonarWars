@@ -24,7 +24,7 @@ public class StartScene extends Scene {
     }
 
     public void loadResources(){
-        DelayModifier dMod = new DelayModifier(3, new IEntityModifier.IEntityModifierListener() {
+        DelayModifier dMod = new DelayModifier(2, new IEntityModifier.IEntityModifierListener() {
             @Override
             public void onModifierStarted(IModifier arg0, IEntity arg1) {
             }

@@ -19,8 +19,6 @@ import org.andengine.entity.text.Text;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.util.adt.color.Color;
-
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -106,7 +104,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     }
 
     public void updatePoints() {
-        String pointsString = Integer.toString(points * 10);
+        String pointsString = Integer.toString(points);
         pointsText.setText(pointsString);
     }
 
@@ -161,7 +159,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                         if (e.gotHit()) {
                             EnemyPool.sharedEnemyPool().recyclePoolItem(e);
                             eIt.remove();
-                            points++;
+                            points = points + 10;
                         }
                         BulletPool.sharedBulletPool().recyclePoolItem(b);
                         it.remove();

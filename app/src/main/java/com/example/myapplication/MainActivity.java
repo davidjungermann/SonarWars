@@ -63,6 +63,7 @@ public class MainActivity extends SimpleBaseGameActivity {
 
         mCurrentScene = null;
         SensorListener.instance = null;
+        ProximityListener.instance = null;
         super.onBackPressed();
     }
 

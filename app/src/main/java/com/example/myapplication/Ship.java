@@ -59,6 +59,7 @@ public class Ship {
         }
     }
 
+
     public void shoot() {
         if (!movable) {
             return;
