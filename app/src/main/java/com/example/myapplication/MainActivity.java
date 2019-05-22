@@ -11,6 +11,7 @@ import org.andengine.audio.sound.Sound;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.resolutionpolicy.FixedResolutionPolicy;
+import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.scene.Scene;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
@@ -46,7 +47,7 @@ public class MainActivity extends SimpleBaseGameActivity {
     public EngineOptions onCreateEngineOptions() {
         instance = this;
         mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
-        EngineOptions options = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new FixedResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), mCamera);
+        EngineOptions options = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), mCamera);
         options.getAudioOptions().setNeedsSound(true);
         options.getAudioOptions().setNeedsMusic(true);
         return  options;
@@ -62,7 +63,6 @@ public class MainActivity extends SimpleBaseGameActivity {
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         try {
             fire = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "laser.ogg");
-            //fire = SoundFactory.createSoundFromPath(mEngine.getSoundManager(), SOUND_DIR + "laser.ogg");
             fire.setLoaded(true);
             death = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "death.ogg");
             death.setLoaded(true);
@@ -70,8 +70,6 @@ public class MainActivity extends SimpleBaseGameActivity {
             lifeline.setLoaded(true);
             reload = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "reload.ogg");
             reload.setLoaded(true);
-            gameOver = MusicFactory.createMusicFromAsset(mEngine.getMusicManager(), instance, SOUND_DIR + "gameover.ogg");
-
 
         } catch (IOException e) {
             Debug.e("Cant find file");
@@ -110,12 +108,6 @@ public class MainActivity extends SimpleBaseGameActivity {
         }
     }
 
-    public void playGameOver() {
-        if (gameOver != null) {
-            gameOver.play();
-        }
-    }
-
     public void playLifeline() {
         if (lifeline != null) {
             lifeline.play();
@@ -131,12 +123,6 @@ public class MainActivity extends SimpleBaseGameActivity {
     public void playReload() {
         if (reload != null) {
             reload.play();
-        }
-    }
-
-    public void pauseGameOver(){
-        if(gameOver != null) {
-            gameOver.stop();
         }
     }
 

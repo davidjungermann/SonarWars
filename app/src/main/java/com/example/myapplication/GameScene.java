@@ -168,6 +168,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 if (accelerometerSpeedY < -5 && bombCounter > 0) {
                     EnemySpawn.getSharedInstance().purge();
                     bombCounter--;
+                    MainActivity.getSharedInstance().playLifeline();
                     MainActivity.getSharedInstance().vibrate();
                 }
                 Iterator<Bullet> it = bulletList.iterator();
