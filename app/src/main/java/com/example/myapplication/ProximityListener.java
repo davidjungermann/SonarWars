@@ -27,6 +27,7 @@ public class ProximityListener implements SensorEventListener {
                     scene.proximity = Math.round(event.values[0]);
                     if(scene.bulletCount == 20){
                         scene.bulletCount = 0;
+                        MainActivity.getSharedInstance().playReload();
                     }
                     scene.reloadWarning.setVisible(false);
                     break;

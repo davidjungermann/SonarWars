@@ -166,6 +166,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 if (accelerometerSpeedY < -8 && bombCounter > 0) {
                     EnemySpawn.getSharedInstance().purge();
                     bombCounter--;
+                    MainActivity.getSharedInstance().playLifeline();
                 }
                 Iterator<Bullet> it = bulletList.iterator();
                 while (it.hasNext()) {
@@ -180,6 +181,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                             createExplosion(e.sprite.getX(), e.sprite.getY(), e.sprite.getParent(), MainActivity.getSharedInstance());
 
                             EnemyPool.sharedEnemyPool().recyclePoolItem(e);
+                            MainActivity.getSharedInstance().playDeath();
                             eIt.remove();
                             points = points + 10;
                         }

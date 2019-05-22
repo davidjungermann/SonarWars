@@ -31,6 +31,7 @@ public class GameOverScene extends MenuScene implements MenuScene.IOnMenuItemCli
         addMenuItem(replayButton);
         attachChild(result);
         setOnMenuItemClickListener(this);
+        MainActivity.getSharedInstance().playGameOver();
     }
 
     public boolean onMenuItemClicked(MenuScene arg0, IMenuItem arg1, float arg2, float arg3) {

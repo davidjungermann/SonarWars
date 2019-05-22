@@ -3,6 +3,8 @@ package com.example.myapplication;
 import android.graphics.Color;
 import android.graphics.Typeface;
 
+import org.andengine.audio.music.Music;
+import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.Sound;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.camera.Camera;
@@ -27,6 +29,10 @@ public class MainActivity extends SimpleBaseGameActivity {
     public Font mFont2;
     public Font mFont3;
     public Sound fire;
+    public Sound lifeline;
+    public Music gameOver;
+    public Sound death;
+    public Sound reload;
 
     //A reference to the current scene
     public Scene mCurrentScene;
@@ -53,6 +59,15 @@ public class MainActivity extends SimpleBaseGameActivity {
             fire = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "laser.ogg");
             //fire = SoundFactory.createSoundFromPath(mEngine.getSoundManager(), SOUND_DIR + "laser.ogg");
             fire.setLoaded(true);
+            death = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "death.ogg");
+            death.setLoaded(true);
+            lifeline = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "lifeline.ogg");
+            lifeline.setLoaded(true);
+            reload = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "reload.ogg");
+            reload.setLoaded(true);
+            gameOver = MusicFactory.createMusicFromAsset(mEngine.getMusicManager(), instance, SOUND_DIR + "gameover.ogg");
+
+
         } catch (IOException e) {
             Debug.e("Cant find file");
         }
@@ -87,6 +102,30 @@ public class MainActivity extends SimpleBaseGameActivity {
     public void playFire() {
         if (fire != null) {
             fire.play();
+        }
+    }
+
+    public void playGameOver() {
+        if (gameOver != null) {
+            gameOver.play();
+        }
+    }
+
+    public void playLifeline() {
+        if (lifeline != null) {
+            lifeline.play();
+        }
+    }
+
+    public void playDeath() {
+        if (death != null) {
+            death.play();
+        }
+    }
+
+    public void playReload() {
+        if (reload != null) {
+            reload.play();
         }
     }
 
