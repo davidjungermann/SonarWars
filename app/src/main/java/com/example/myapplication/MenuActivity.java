@@ -21,10 +21,6 @@ public class MenuActivity extends AppCompatActivity {
         Button tutorial = findViewById(R.id.button3);
         Button highScore = findViewById(R.id.button);
 
-        final MediaPlayer music = MediaPlayer.create(MenuActivity.this,R.raw.themesong);
-        music.start();
-        music.setLooping(true);
-
         tutorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +31,6 @@ public class MenuActivity extends AppCompatActivity {
         playGame.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 startActivity(new Intent(MenuActivity.this, MainActivity.class));
-                music.stop();
 
             }
         });
