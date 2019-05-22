@@ -35,6 +35,8 @@ import org.andengine.entity.primitive.Rectangle;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import static org.andengine.util.adt.color.Color.YELLOW;
+
 public class GameScene extends Scene implements IOnSceneTouchListener {
     Camera mCamera;
     SensorManager sensorManager;
@@ -222,7 +224,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
             @Override
             public Rectangle create(float pX, float pY) {
                 Rectangle rect = new Rectangle(posX, posY, 20, 20, activity.getVertexBufferObjectManager());
-                rect.setColor(Color.YELLOW);
+                rect.setColor(YELLOW);
                 return rect;
             }
         };
@@ -255,6 +257,3 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     }
 
 }
-
-
-
