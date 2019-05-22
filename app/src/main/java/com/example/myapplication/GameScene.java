@@ -160,6 +160,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 Enemy e = eIt.next();
 
                 if (e.sprite.getY() < 0) {
+                    MainActivity.getSharedInstance().vibrate();
                     detach();
                     SensorListener.instance = null;
                     ProximityListener.instance = null;
@@ -185,7 +186,6 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
 
                             EnemyPool.sharedEnemyPool().recyclePoolItem(e);
                             MainActivity.getSharedInstance().playDeath();
-                            MainActivity.getSharedInstance().vibrate();
                             eIt.remove();
                             points = points + 10;
                         }
