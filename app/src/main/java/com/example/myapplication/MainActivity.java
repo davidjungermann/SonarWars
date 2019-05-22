@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Vibrator;
 
 import org.andengine.audio.music.Music;
 import org.andengine.audio.music.MusicFactory;
@@ -34,6 +36,8 @@ public class MainActivity extends SimpleBaseGameActivity {
     public Sound death;
     public Sound reload;
 
+    Vibrator v;
+
     //A reference to the current scene
     public Scene mCurrentScene;
     public static MainActivity instance;
@@ -55,6 +59,7 @@ public class MainActivity extends SimpleBaseGameActivity {
         mFont.load();
         mFont2.load();
         mFont3.load();
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         try {
             fire = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "laser.ogg");
             //fire = SoundFactory.createSoundFromPath(mEngine.getSoundManager(), SOUND_DIR + "laser.ogg");
@@ -127,6 +132,10 @@ public class MainActivity extends SimpleBaseGameActivity {
         if (reload != null) {
             reload.play();
         }
+    }
+
+    public void vibrate() {
+        v.vibrate(300);
     }
 
 

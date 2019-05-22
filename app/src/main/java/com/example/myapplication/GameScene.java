@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.os.Vibrator;
 import android.util.Log;
 
 import org.andengine.audio.sound.Sound;
@@ -166,7 +168,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 if (accelerometerSpeedY < -8 && bombCounter > 0) {
                     EnemySpawn.getSharedInstance().purge();
                     bombCounter--;
-                    MainActivity.getSharedInstance().playLifeline();
+                    MainActivity.getSharedInstance().vibrate();
                 }
                 Iterator<Bullet> it = bulletList.iterator();
                 while (it.hasNext()) {
