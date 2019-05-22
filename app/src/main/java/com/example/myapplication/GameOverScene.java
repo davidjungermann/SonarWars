@@ -37,6 +37,7 @@ public class GameOverScene extends MenuScene implements MenuScene.IOnMenuItemCli
     public boolean onMenuItemClicked(MenuScene arg0, IMenuItem arg1, float arg2, float arg3) {
         switch (arg1.getID()) {
             case MENU_START:
+                MainActivity.getSharedInstance().pauseGameOver();
                 activity.setCurrentScene(new GameScene());
             default:
                 break;

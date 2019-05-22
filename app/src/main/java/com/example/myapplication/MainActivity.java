@@ -134,6 +134,12 @@ public class MainActivity extends SimpleBaseGameActivity {
         }
     }
 
+    public void pauseGameOver(){
+        if(gameOver != null) {
+            gameOver.stop();
+        }
+    }
+
     public void vibrate() {
         v.vibrate(300);
     }
