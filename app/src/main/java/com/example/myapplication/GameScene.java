@@ -146,6 +146,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         }
         if (bulletCount < 20) {
             ship.shoot();
+            MainActivity.getSharedInstance().playFire();
         }
         return true;
     }

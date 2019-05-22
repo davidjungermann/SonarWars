@@ -3,10 +3,8 @@ package com.example.myapplication;
 import android.graphics.Color;
 import android.graphics.Typeface;
 
-import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.Sound;
 import org.andengine.audio.sound.SoundFactory;
-import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.resolutionpolicy.FixedResolutionPolicy;
 import org.andengine.entity.scene.Scene;
@@ -16,6 +14,7 @@ import org.andengine.entity.util.FPSLogger;
 import org.andengine.opengl.font.Font;
 import org.andengine.opengl.font.FontFactory;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
+import org.andengine.util.debug.Debug;
 
 import java.io.IOException;
 
@@ -37,7 +36,10 @@ public class MainActivity extends SimpleBaseGameActivity {
     public EngineOptions onCreateEngineOptions() {
         instance = this;
         mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
-        return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new FixedResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), mCamera);
+        EngineOptions options = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new FixedResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), mCamera);
+        options.getAudioOptions().setNeedsSound(true);
+        options.getAudioOptions().setNeedsMusic(true);
+        return  options;
     }
 
     protected void onCreateResources() {
@@ -49,10 +51,11 @@ public class MainActivity extends SimpleBaseGameActivity {
         mFont3.load();
         try {
             fire = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "laser.ogg");
+            //fire = SoundFactory.createSoundFromPath(mEngine.getSoundManager(), SOUND_DIR + "laser.ogg");
+            fire.setLoaded(true);
         } catch (IOException e) {
-            e.printStackTrace();
+            Debug.e("Cant find file");
         }
-        fire.setLoaded(true);
     }
 
     protected Scene onCreateScene() {
@@ -80,5 +83,12 @@ public class MainActivity extends SimpleBaseGameActivity {
         ProximityListener.instance = null;
         super.onBackPressed();
     }
+
+    public void playFire() {
+        if (fire != null) {
+            fire.play();
+        }
+    }
+
 
 }
