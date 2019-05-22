@@ -184,6 +184,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
 
                             EnemyPool.sharedEnemyPool().recyclePoolItem(e);
                             MainActivity.getSharedInstance().playDeath();
+                            MainActivity.getSharedInstance().vibrate();
                             eIt.remove();
                             points = points + 10;
                         }
