@@ -51,8 +51,6 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     private HUD hud;
     private Text pointsText;
     private Text magazine;
-    public PointParticleEmitter particleEmitter;
-
 
     public GameScene() {
         setOnSceneTouchListener(this);
@@ -219,7 +217,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         int mNumPart = 15;
         int mTimePart = 2;
 
-        particleEmitter = new PointParticleEmitter(posX, posY);
+        PointParticleEmitter particleEmitter = new PointParticleEmitter(posX, posY);
         IEntityFactory recFact = new IEntityFactory() {
             @Override
             public Rectangle create(float pX, float pY) {
