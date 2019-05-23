@@ -12,7 +12,6 @@ public class GameOverScene extends MenuScene implements MenuScene.IOnMenuItemCli
     final int REPLAY_START = 0;
     final int MENU_START = 1;
     MainActivity activity;
-    MenuActivity menu;
 
     public GameOverScene() {
         super(MainActivity.getSharedInstance().mCamera);

@@ -13,9 +13,7 @@ import java.util.Random;
 public class EnemySpawn extends Entity {
 
     public static EnemySpawn instance;
-    public int enemyCount;
     public Camera mCamera;
-    public TimerHandler time;
     public int width;
     private LinkedList<Enemy> enemies;
 

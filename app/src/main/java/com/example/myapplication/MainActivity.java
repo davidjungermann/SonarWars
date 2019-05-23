@@ -11,7 +11,7 @@ import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
-import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
+import org.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.util.FPSLogger;
 import org.andengine.opengl.font.Font;
@@ -37,7 +37,6 @@ public class MainActivity extends SimpleBaseGameActivity {
     public Sound reload;
     public Sound lose;
     public Sound getready;
-    //A reference to the current scene
     public Scene mCurrentScene;
     Vibrator v;
 
@@ -48,7 +47,7 @@ public class MainActivity extends SimpleBaseGameActivity {
     public EngineOptions onCreateEngineOptions() {
         instance = this;
         mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
-        EngineOptions options = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), mCamera);
+        EngineOptions options = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new FillResolutionPolicy(), mCamera);
         options.getAudioOptions().setNeedsSound(true);
         options.getAudioOptions().setNeedsMusic(true);
         return options;
