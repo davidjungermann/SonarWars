@@ -32,7 +32,6 @@ public class MenuActivity extends AppCompatActivity {
 
         highScore.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, HighscoreActivity.class));
 
             }
         });

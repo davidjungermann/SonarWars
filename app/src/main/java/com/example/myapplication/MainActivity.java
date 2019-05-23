@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Vibrator;
@@ -93,6 +95,10 @@ public class MainActivity extends SimpleBaseGameActivity {
         getEngine().setScene(mCurrentScene);
     }
 
+    public void setCurrentActivity(){
+        startActivity(new Intent(MainActivity.this, MenuActivity.class));
+    }
+
     @Override
     public void onBackPressed() {
         if (mCurrentScene instanceof GameScene)
@@ -105,6 +111,7 @@ public class MainActivity extends SimpleBaseGameActivity {
         fire.release();
         death.release();
         lifeline.release();
+        getready.release();
         super.onBackPressed();
     }
 

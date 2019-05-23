@@ -36,7 +36,7 @@ public class EnemySpawn extends Entity {
         mCamera = MainActivity.getSharedInstance().mCamera;
         width = (int) mCamera.getWidth();
 
-        TimerHandler spriteMoveHandler = new TimerHandler(1, true, new ITimerCallback() {
+        TimerHandler spriteMoveHandler = new TimerHandler(2, true, new ITimerCallback() {
             @Override
             public void onTimePassed(TimerHandler pTimerHandler) {
                 Random rand = new Random();

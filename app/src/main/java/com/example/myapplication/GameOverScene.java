@@ -51,6 +51,7 @@ public class GameOverScene extends MenuScene implements MenuScene.IOnMenuItemCli
             default:
                 break;
             case MENU_START:
+                activity.setCurrentActivity();
                 break;
         }
         return false;
