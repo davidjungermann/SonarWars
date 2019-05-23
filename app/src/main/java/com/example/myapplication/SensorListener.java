@@ -8,15 +8,15 @@ public class SensorListener implements SensorEventListener {
     static SensorListener instance;
     GameScene scene;
 
+    public SensorListener() {
+        instance = this;
+        scene = (GameScene) MainActivity.getSharedInstance().mCurrentScene;
+    }
+
     public static SensorListener getSharedInstance() {
         if (instance == null)
             instance = new SensorListener();
         return instance;
-    }
-
-    public SensorListener() {
-        instance = this;
-        scene = (GameScene) MainActivity.getSharedInstance().mCurrentScene;
     }
 
     @Override

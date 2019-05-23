@@ -9,9 +9,9 @@ import org.andengine.entity.text.Text;
 import org.andengine.util.adt.color.Color;
 
 public class GameOverScene extends MenuScene implements MenuScene.IOnMenuItemClickListener {
-    MainActivity activity;
     final int REPLAY_START = 0;
     final int MENU_START = 1;
+    MainActivity activity;
     MenuActivity menu;
 
     public GameOverScene() {

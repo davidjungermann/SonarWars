@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -26,6 +25,8 @@ import java.io.IOException;
 public class MainActivity extends SimpleBaseGameActivity {
     static final int CAMERA_WIDTH = 1920;
     static final int CAMERA_HEIGHT = 1080;
+    private static final String SOUND_DIR = "mfx/";
+    public static MainActivity instance;
     public Camera mCamera;
     public Font mFont;
     public Font mFont2;
@@ -36,13 +37,13 @@ public class MainActivity extends SimpleBaseGameActivity {
     public Sound reload;
     public Sound lose;
     public Sound getready;
-
-    Vibrator v;
-
     //A reference to the current scene
     public Scene mCurrentScene;
-    public static MainActivity instance;
-    private static final String SOUND_DIR = "mfx/";
+    Vibrator v;
+
+    public static MainActivity getSharedInstance() {
+        return instance;
+    }
 
     public EngineOptions onCreateEngineOptions() {
         instance = this;
@@ -86,16 +87,12 @@ public class MainActivity extends SimpleBaseGameActivity {
         return mCurrentScene;
     }
 
-    public static MainActivity getSharedInstance() {
-        return instance;
-    }
-
     public void setCurrentScene(Scene scene) {
         mCurrentScene = scene;
         getEngine().setScene(mCurrentScene);
     }
 
-    public void setCurrentActivity(){
+    public void setCurrentActivity() {
         startActivity(new Intent(MainActivity.this, MenuActivity.class));
     }
 

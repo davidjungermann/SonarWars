@@ -12,12 +12,17 @@ import java.util.Random;
 
 public class EnemySpawn extends Entity {
 
-    private LinkedList<Enemy> enemies;
     public static EnemySpawn instance;
     public int enemyCount;
     public Camera mCamera;
     public TimerHandler time;
     public int width;
+    private LinkedList<Enemy> enemies;
+
+    public EnemySpawn() {
+        enemies = new LinkedList<>();
+        instance = this;
+    }
 
     public static EnemySpawn getSharedInstance() {
         return instance;
@@ -27,9 +32,9 @@ public class EnemySpawn extends Entity {
         return instance.enemies.iterator();
     }
 
-    public EnemySpawn() {
-        enemies = new LinkedList<>();
-        instance = this;
+    public static void purgeAndSpawn() {
+        instance.purge();
+        instance.spawn();
     }
 
     public void spawn() {
@@ -64,13 +69,9 @@ public class EnemySpawn extends Entity {
         enemies.clear();
     }
 
-    public static void purgeAndSpawn() {
-        instance.purge();
-        instance.spawn();
-    }
-
     @Override
     public void onDetached() {
+        clearUpdateHandlers();
         purge();
         super.onDetached();
     }

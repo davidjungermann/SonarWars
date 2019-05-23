@@ -4,6 +4,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.util.Log;
 
+import org.andengine.audio.sound.Sound;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.engine.handler.timer.ITimerCallback;
@@ -35,26 +36,22 @@ import java.util.LinkedList;
 import static org.andengine.util.adt.color.Color.YELLOW;
 
 public class GameScene extends Scene implements IOnSceneTouchListener {
-    Camera mCamera;
-    SensorManager sensorManager;
-
     public LinkedList<Bullet> bulletList;
     public Ship ship;
-    private HUD hud;
-
     public int bulletCount;
     public int points = 0;
-    float proximity;
-
-    float accelerometerSpeedX;
-    float accelerometerSpeedY;
-    int bombCounter = 3;
-
-    private Text pointsText;
-    private Text magazine;
     public Text reloadWarning;
     public Text bombText;
     public MainActivity activity;
+    Camera mCamera;
+    SensorManager sensorManager;
+    float proximity;
+    float accelerometerSpeedX;
+    float accelerometerSpeedY;
+    int bombCounter = 3;
+    private HUD hud;
+    private Text pointsText;
+    private Text magazine;
 
 
     public GameScene() {

@@ -8,14 +8,14 @@ public class BulletPool extends GenericPool<Bullet> {
 
     public static BulletPool instance;
 
+    private BulletPool() {
+        super();
+    }
+
     public static BulletPool sharedBulletPool() {
         if (instance == null)
             instance = new BulletPool();
         return instance;
-    }
-
-    private BulletPool() {
-        super();
     }
 
     @Override

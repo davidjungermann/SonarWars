@@ -8,15 +8,15 @@ public class ProximityListener implements SensorEventListener {
     static ProximityListener instance;
     GameScene scene;
 
+    public ProximityListener() {
+        instance = this;
+        scene = (GameScene) MainActivity.getSharedInstance().mCurrentScene;
+    }
+
     public static ProximityListener getSharedInstance() {
         if (instance == null)
             instance = new ProximityListener();
         return instance;
-    }
-
-    public ProximityListener() {
-        instance = this;
-        scene = (GameScene) MainActivity.getSharedInstance().mCurrentScene;
     }
 
     @Override

@@ -6,15 +6,15 @@ public class EnemyPool extends GenericPool<Enemy> {
 
     public static EnemyPool instance;
 
+    private EnemyPool() {
+        super();
+    }
+
     public static EnemyPool sharedEnemyPool() {
         if (instance == null) {
             instance = new EnemyPool();
         }
         return instance;
-    }
-
-    private EnemyPool() {
-        super();
     }
 
     @Override
