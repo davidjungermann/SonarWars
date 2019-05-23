@@ -4,7 +4,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.util.Log;
 
-import org.andengine.audio.sound.Sound;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.engine.handler.timer.ITimerCallback;
@@ -160,10 +159,10 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                     setChildScene(new GameOverScene());
                 }
                 if (accelerometerSpeedY < -5 && bombCounter > 0) {
-                    EnemySpawn.getSharedInstance().purge();
-                    bombCounter--;
                     MainActivity.getSharedInstance().playLifeline();
+                    EnemySpawn.getSharedInstance().purge();
                     MainActivity.getSharedInstance().vibrate();
+                    bombCounter--;
                 }
                 Iterator<Bullet> it = bulletList.iterator();
                 while (it.hasNext()) {
