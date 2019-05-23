@@ -69,8 +69,8 @@ public class EnemySpawn extends Entity {
 
     @Override
     public void onDetached() {
-        clearUpdateHandlers();
         purge();
+        clearUpdateHandlers();
         super.onDetached();
     }
 

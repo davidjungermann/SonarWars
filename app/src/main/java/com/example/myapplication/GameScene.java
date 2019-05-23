@@ -51,6 +51,8 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     private HUD hud;
     private Text pointsText;
     private Text magazine;
+    public ParticleSystem<Rectangle> particleSystem;
+    public PointParticleEmitter pointParticleEmitter;
 
 
     public GameScene() {
@@ -175,7 +177,6 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                     if (b.sprite.collidesWith(e.sprite)) {
                         if (e.gotHit()) {
                             createExplosion(e.sprite.getX(), e.sprite.getY(), e.sprite.getParent(), MainActivity.getSharedInstance());
-
                             EnemyPool.sharedEnemyPool().recyclePoolItem(e);
                             MainActivity.getSharedInstance().playDeath();
                             eIt.remove();
@@ -214,7 +215,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         BulletPool.instance = null;
     }
 
-    private void createExplosion(final float posX, final float posY, final IEntity target, final SimpleBaseGameActivity activity) {
+    public void createExplosion(final float posX, final float posY, final IEntity target, final SimpleBaseGameActivity activity) {
         int mNumPart = 15;
         int mTimePart = 2;
 
@@ -228,7 +229,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
             }
         };
 
-        final ParticleSystem<Rectangle> particleSystem = new ParticleSystem<Rectangle>(
+        particleSystem = new ParticleSystem<Rectangle>(
                 recFact, particleEmitter, 500, 500, mNumPart);
 
         particleSystem
