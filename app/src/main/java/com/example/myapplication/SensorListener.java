@@ -16,7 +16,7 @@ public class SensorListener implements SensorEventListener {
 
     public SensorListener() {
         instance = this;
-        scene = (GameScene)MainActivity.getSharedInstance().mCurrentScene;
+        scene = (GameScene) MainActivity.getSharedInstance().mCurrentScene;
     }
 
     @Override

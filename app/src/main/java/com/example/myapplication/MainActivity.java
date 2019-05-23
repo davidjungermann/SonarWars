@@ -5,16 +5,13 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Vibrator;
 
-import org.andengine.audio.music.Music;
-import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.Sound;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.camera.Camera;
-import org.andengine.engine.options.resolutionpolicy.FixedResolutionPolicy;
-import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
-import org.andengine.entity.scene.Scene;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
+import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
+import org.andengine.entity.scene.Scene;
 import org.andengine.entity.util.FPSLogger;
 import org.andengine.opengl.font.Font;
 import org.andengine.opengl.font.FontFactory;
@@ -33,9 +30,10 @@ public class MainActivity extends SimpleBaseGameActivity {
     public Font mFont3;
     public Sound fire;
     public Sound lifeline;
-    public Music gameOver;
     public Sound death;
     public Sound reload;
+    public Sound lose;
+    public Sound getready;
 
     Vibrator v;
 
@@ -50,7 +48,7 @@ public class MainActivity extends SimpleBaseGameActivity {
         EngineOptions options = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), mCamera);
         options.getAudioOptions().setNeedsSound(true);
         options.getAudioOptions().setNeedsMusic(true);
-        return  options;
+        return options;
     }
 
     protected void onCreateResources() {
@@ -64,12 +62,16 @@ public class MainActivity extends SimpleBaseGameActivity {
         try {
             fire = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "laser.ogg");
             fire.setLoaded(true);
-            death = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "death.ogg");
+            death = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "enemy_death.ogg");
             death.setLoaded(true);
             lifeline = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "lifeline.ogg");
             lifeline.setLoaded(true);
-            reload = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "reload.ogg");
+            reload = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "reload2.ogg");
             reload.setLoaded(true);
+            lose = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "lose2.ogg");
+            lose.setLoaded(true);
+            getready = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "getready.ogg");
+            getready.setLoaded(true);
 
         } catch (IOException e) {
             Debug.e("Cant find file");
@@ -99,6 +101,10 @@ public class MainActivity extends SimpleBaseGameActivity {
         mCurrentScene = null;
         SensorListener.instance = null;
         ProximityListener.instance = null;
+        reload.release();
+        fire.release();
+        death.release();
+        lifeline.release();
         super.onBackPressed();
     }
 
@@ -107,6 +113,19 @@ public class MainActivity extends SimpleBaseGameActivity {
             fire.play();
         }
     }
+
+    public void playLose() {
+        if (lose != null) {
+            lose.play();
+        }
+    }
+
+    public void playReady() {
+        if (getready != null) {
+            getready.play();
+        }
+    }
+
 
     public void playLifeline() {
         if (lifeline != null) {

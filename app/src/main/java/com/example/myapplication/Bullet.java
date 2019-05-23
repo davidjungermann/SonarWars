@@ -1,10 +1,6 @@
 package com.example.myapplication;
 
-import android.app.Activity;
-
-import org.andengine.ui.activity.BaseActivity;
 import org.andengine.entity.primitive.Rectangle;
-import org.andengine.engine.camera.Camera;
 import org.andengine.util.adt.color.Color;
 
 public class Bullet {

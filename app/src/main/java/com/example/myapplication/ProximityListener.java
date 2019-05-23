@@ -16,7 +16,7 @@ public class ProximityListener implements SensorEventListener {
 
     public ProximityListener() {
         instance = this;
-        scene = (GameScene)MainActivity.getSharedInstance().mCurrentScene;
+        scene = (GameScene) MainActivity.getSharedInstance().mCurrentScene;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class ProximityListener implements SensorEventListener {
             switch (event.sensor.getType()) {
                 case Sensor.TYPE_PROXIMITY:
                     scene.proximity = Math.round(event.values[0]);
-                    if(scene.bulletCount == 20){
+                    if (scene.bulletCount == 20) {
                         scene.bulletCount = 0;
                         MainActivity.getSharedInstance().playReload();
                     }

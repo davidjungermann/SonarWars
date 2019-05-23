@@ -4,7 +4,7 @@ import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.DelayModifier;
 import org.andengine.entity.modifier.IEntityModifier;
 import org.andengine.entity.modifier.MoveYModifier;
-import org.andengine.entity.scene.Scene;;
+import org.andengine.entity.scene.Scene;
 import org.andengine.entity.text.Text;
 import org.andengine.util.modifier.IModifier;
 

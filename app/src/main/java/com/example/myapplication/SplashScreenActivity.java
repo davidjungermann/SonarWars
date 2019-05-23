@@ -2,8 +2,8 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -21,11 +21,11 @@ public class SplashScreenActivity extends AppCompatActivity {
         logoLauncher.start();
     }
 
-    private class LogoLauncher extends Thread{
-        public void run(){
-            try{
+    private class LogoLauncher extends Thread {
+        public void run() {
+            try {
                 sleep(3000);
-            } catch(InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             Intent intent = new Intent(SplashScreenActivity.this, MenuActivity.class);

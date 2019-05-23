@@ -28,6 +28,7 @@ public class SplashScene extends Scene {
         title1.registerEntityModifier(new MoveXModifier(1, title1.getX(), activity.mCamera.getCenterX() - title2.getWidth() + 90));
         title2.registerEntityModifier(new MoveXModifier(1, title2.getX(), activity.mCamera.getCenterX() + title1.getWidth() - 90));
         loadResources();
+        MainActivity.getSharedInstance().playReady();
 
     }
 
@@ -39,6 +40,7 @@ public class SplashScene extends Scene {
 
             public void onModifierFinished(IModifier arg0, IEntity arg1) {
                 activity.setCurrentScene(new StartScene());
+                MainActivity.getSharedInstance().playReady();
             }
         });
         registerEntityModifier(dMod);

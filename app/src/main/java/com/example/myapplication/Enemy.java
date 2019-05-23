@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import org.andengine.engine.camera.Camera;
 import org.andengine.entity.modifier.LoopEntityModifier;
 import org.andengine.entity.modifier.RotationModifier;
 import org.andengine.entity.primitive.Rectangle;
@@ -38,10 +37,7 @@ public class Enemy {
     public boolean gotHit() {
         synchronized (this) {
             hp--;
-            if (hp <= 0)
-                return true;
-            else
-                return false;
+            return hp <= 0;
         }
     }
 }

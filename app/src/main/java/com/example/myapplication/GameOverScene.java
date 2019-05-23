@@ -1,7 +1,5 @@
 package com.example.myapplication;
 
-import android.content.Intent;
-
 import org.andengine.entity.modifier.MoveYModifier;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.scene.menu.MenuScene;

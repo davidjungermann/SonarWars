@@ -1,15 +1,10 @@
 package com.example.myapplication;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-
-import org.andengine.entity.sprite.Sprite;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
-import org.andengine.opengl.texture.region.TextureRegion;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -28,15 +23,15 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        playGame.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        playGame.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 startActivity(new Intent(MenuActivity.this, MainActivity.class));
 
             }
         });
 
-        highScore.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        highScore.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 startActivity(new Intent(MenuActivity.this, HighscoreActivity.class));
 
             }

@@ -1,13 +1,9 @@
 package com.example.myapplication;
 
-import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
-import android.os.Vibrator;
 import android.util.Log;
 
-import org.andengine.audio.sound.Sound;
-import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.engine.handler.timer.ITimerCallback;
@@ -23,16 +19,15 @@ import org.andengine.entity.particle.emitter.PointParticleEmitter;
 import org.andengine.entity.particle.initializer.VelocityParticleInitializer;
 import org.andengine.entity.particle.modifier.AlphaParticleModifier;
 import org.andengine.entity.particle.modifier.RotationParticleModifier;
+import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.text.Text;
 import org.andengine.input.touch.TouchEvent;
-import org.andengine.ui.activity.BaseActivity;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.adt.color.Color;
-import org.andengine.entity.primitive.Rectangle;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -111,7 +106,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         hud.attachChild(magazine);
 
         //Sets bomb counter
-        bombText = new Text(mCamera.getWidth() - 50, 50, MainActivity.getSharedInstance().mFont3, "00",
+        bombText = new Text(50, magazine.getHeight() + 50, MainActivity.getSharedInstance().mFont3, "00",
                 MainActivity.getSharedInstance().getVertexBufferObjectManager());
         hud.attachChild(bombText);
 
@@ -161,6 +156,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
 
                 if (e.sprite.getY() < 0) {
                     MainActivity.getSharedInstance().vibrate();
+                    MainActivity.getSharedInstance().playLose();
                     detach();
                     SensorListener.instance = null;
                     ProximityListener.instance = null;
@@ -226,7 +222,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         int mNumPart = 15;
         int mTimePart = 2;
 
-        PointParticleEmitter particleEmitter = new PointParticleEmitter(posX,posY);
+        PointParticleEmitter particleEmitter = new PointParticleEmitter(posX, posY);
         IEntityFactory recFact = new IEntityFactory() {
             @Override
             public Rectangle create(float pX, float pY) {

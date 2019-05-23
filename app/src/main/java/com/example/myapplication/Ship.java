@@ -1,13 +1,10 @@
 package com.example.myapplication;
 
-import android.app.Activity;
-
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.MoveXModifier;
 import org.andengine.entity.modifier.MoveYModifier;
 import org.andengine.entity.primitive.Rectangle;
-import org.andengine.ui.activity.BaseActivity;
 
 public class Ship {
     public Rectangle sprite;

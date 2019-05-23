@@ -56,21 +56,6 @@
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/lifeline" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="56dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Good luck, the galaxy relies on you!"
-                android:textColor="#FFEB3B"
-                android:textSize="24sp"
-                android:typeface="normal" />
-
             <Button
                 android:id="@+id/button4"
                 android:layout_width="328dp"

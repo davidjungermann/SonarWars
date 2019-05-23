@@ -5,6 +5,7 @@ import org.andengine.engine.handler.timer.ITimerCallback;
 import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.entity.Entity;
 import org.andengine.entity.modifier.MoveYModifier;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
@@ -42,7 +43,7 @@ public class EnemySpawn extends Entity {
                 Enemy e = EnemyPool.sharedEnemyPool().obtainPoolItem();
                 int low = 290;
                 int high = (int) mCamera.getWidth() - 290;
-                int result = rand.nextInt(high-low) + low;
+                int result = rand.nextInt(high - low) + low;
                 e.sprite.setPosition(result, -20);
                 e.sprite.setVisible(true);
                 attachChild(e.sprite);
@@ -63,7 +64,7 @@ public class EnemySpawn extends Entity {
         enemies.clear();
     }
 
-    public static void purgeAndSpawn(){
+    public static void purgeAndSpawn() {
         instance.purge();
         instance.spawn();
     }
