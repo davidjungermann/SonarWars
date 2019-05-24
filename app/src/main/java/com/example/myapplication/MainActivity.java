@@ -144,11 +144,12 @@ public class MainActivity extends SimpleBaseGameActivity {
     }
 
     public void clearSounds() {
-        death.release();
-        fire.release();
-        lifeline.release();
-        reload.release();
-        getready.release();
+        death = null;
+        fire = null;
+        lifeline = null;
+        reload = null;
+        getready = null;
+        v = null;
     }
 
     public void vibrate() {
