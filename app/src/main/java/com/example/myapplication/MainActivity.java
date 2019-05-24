@@ -103,8 +103,8 @@ public class MainActivity extends SimpleBaseGameActivity {
         mCurrentScene = null;
         SensorListener.instance = null;
         ProximityListener.instance = null;
-        clearSounds();
     }
+
 
     public void playFire() {
         if (fire != null) {
@@ -141,15 +141,6 @@ public class MainActivity extends SimpleBaseGameActivity {
         if (reload != null) {
             reload.play();
         }
-    }
-
-    public void clearSounds() {
-        death = null;
-        fire = null;
-        lifeline = null;
-        reload = null;
-        getready = null;
-        v = null;
     }
 
     public void vibrate() {

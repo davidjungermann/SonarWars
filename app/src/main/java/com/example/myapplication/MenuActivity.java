@@ -53,6 +53,7 @@ public class MenuActivity extends AppCompatActivity {
         highScore.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 highScore.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
+                //startActivity(new Intent(MenuActivity.this, HighscoreActivity.class));
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
