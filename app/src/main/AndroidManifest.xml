@@ -8,6 +8,8 @@
         android:label="SonarWars"
         android:roundIcon="@drawable/loggacut"
         android:supportsRtl="true"
+        android:configChanges="orientation"
+        android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
 
         <activity android:name=".TutorialActivity"
