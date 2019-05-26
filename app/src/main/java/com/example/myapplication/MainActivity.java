@@ -98,8 +98,9 @@ public class MainActivity extends SimpleBaseGameActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (mCurrentScene instanceof GameScene)
+        if (mCurrentScene instanceof GameScene) {
             ((GameScene) mCurrentScene).detach();
+        }
         mCurrentScene = null;
         SensorListener.instance = null;
         ProximityListener.instance = null;
@@ -146,6 +147,5 @@ public class MainActivity extends SimpleBaseGameActivity {
     public void vibrate() {
         v.vibrate(300);
     }
-
 
 }

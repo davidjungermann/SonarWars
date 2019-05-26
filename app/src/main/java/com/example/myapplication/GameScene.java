@@ -15,6 +15,7 @@ import org.andengine.entity.modifier.FadeOutModifier;
 import org.andengine.entity.modifier.LoopEntityModifier;
 import org.andengine.entity.modifier.SequenceEntityModifier;
 import org.andengine.entity.particle.ParticleSystem;
+import org.andengine.entity.particle.emitter.IParticleEmitter;
 import org.andengine.entity.particle.emitter.PointParticleEmitter;
 import org.andengine.entity.particle.initializer.VelocityParticleInitializer;
 import org.andengine.entity.particle.modifier.AlphaParticleModifier;
@@ -174,7 +175,6 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                     if (b.sprite.collidesWith(e.sprite)) {
                         if (e.gotHit()) {
                             createExplosion(e.sprite.getX(), e.sprite.getY(), e.sprite.getParent(), MainActivity.getSharedInstance());
-
                             EnemyPool.sharedEnemyPool().recyclePoolItem(e);
                             MainActivity.getSharedInstance().playDeath();
                             eIt.remove();
@@ -217,7 +217,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         int mNumPart = 15;
         int mTimePart = 2;
 
-        PointParticleEmitter particleEmitter = new PointParticleEmitter(posX, posY);
+        IParticleEmitter particleEmitter = new PointParticleEmitter(posX, posY);
         IEntityFactory recFact = new IEntityFactory() {
             @Override
             public Rectangle create(float pX, float pY) {
@@ -227,7 +227,9 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
             }
         };
 
-        final ParticleSystem<Rectangle> particleSystem = new ParticleSystem<Rectangle>(
+
+        final ParticleSystem<Rectangle> particleSystem;
+        particleSystem = new ParticleSystem<Rectangle>(
                 recFact, particleEmitter, 500, 500, mNumPart);
 
         particleSystem
