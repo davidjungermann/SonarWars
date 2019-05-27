@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.util.Log;
@@ -30,8 +31,14 @@ import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.adt.color.Color;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 import static org.andengine.util.adt.color.Color.YELLOW;
 
@@ -112,6 +119,49 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         hud.attachChild(pointsText);
     }
 
+    public void setHighScore(){
+        int exScore = points;
+
+
+        if(exScore > 0) {
+            SharedPreferences.Editor scoreEdit = MainActivity.getSharedInstance().gamePrefs.edit();
+            DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
+            String dateOutput = dateForm.format(new Date());
+            String scores = MainActivity.getSharedInstance().gamePrefs.getString("highScores", "");
+            if(scores.length()>0){
+                //we have existing scores
+                List<Score> scoreStrings = new ArrayList<Score>();
+                String[] exScores = scores.split("\\|");
+
+                for(String eSc : exScores){
+                    String[] parts = eSc.split(" - ");
+                    scoreStrings.add(new Score(parts[0], Integer.parseInt(parts[1])));
+                }
+                Score newScore = new Score(dateOutput, exScore);
+                scoreStrings.add(newScore);
+                Collections.sort(scoreStrings);
+
+                StringBuilder scoreBuild = new StringBuilder("");
+                for(int s=0; s<scoreStrings.size(); s++){
+                    if(s>=10) break;//only want ten
+                    if(s>0) scoreBuild.append("|");//pipe separate the score strings
+                    scoreBuild.append(scoreStrings.get(s).getScoreText());
+                }
+                //write to prefs
+                scoreEdit.putString("highScores", scoreBuild.toString());
+                scoreEdit.commit();
+
+            }
+            else{
+                //no existing
+                scoreEdit.putString("highScores", ""+dateOutput+" - "+exScore);
+                scoreEdit.commit();
+            }
+
+
+        }
+    }
+
     public void updatePoints() {
         String pointsString = Integer.toString(points);
         pointsText.setText(pointsString);
@@ -153,6 +203,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 if (e.sprite.getY() < 0) {
                     MainActivity.getSharedInstance().vibrate();
                     MainActivity.getSharedInstance().playLose();
+                    setHighScore();
                     detach();
                     SensorListener.instance = null;
                     ProximityListener.instance = null;

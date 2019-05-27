@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Vibrator;
@@ -39,6 +40,8 @@ public class MainActivity extends SimpleBaseGameActivity {
     public Sound getready;
     public Scene mCurrentScene;
     Vibrator v;
+    public SharedPreferences gamePrefs;
+    public static final String GAME_PREFS = "ArithmeticFile";
 
     public static MainActivity getSharedInstance() {
         return instance;
@@ -61,6 +64,7 @@ public class MainActivity extends SimpleBaseGameActivity {
         mFont2.load();
         mFont3.load();
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        gamePrefs = getSharedPreferences(GAME_PREFS, 0);
         try {
             fire = SoundFactory.createSoundFromAsset(mEngine.getSoundManager(), instance, SOUND_DIR + "laser.ogg");
             fire.setLoaded(true);

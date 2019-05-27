@@ -4,22 +4,33 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.widget.TextView;
 
 public class HighscoreActivity extends AppCompatActivity {
     MainActivity activity;
     public static int score;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activity = MainActivity.getSharedInstance();
-        GameScene scene = (GameScene) activity.mCurrentScene;
-        score = scene.points;
+        setContentView(R.layout.activity_highscore);
 
-        if (score != 0) {
-            ArrayList<Integer> list = new ArrayList<>();
-            list.add(score);
-            System.out.println("Scores: " + list);
+        TextView scoreView = (TextView)findViewById(R.id.textView8);
+
+        SharedPreferences scorePrefs = getSharedPreferences(activity.GAME_PREFS, 0);
+
+        String[] savedScores = scorePrefs.getString("highScores", "").split("\\|");
+
+        StringBuilder scoreBuild = new StringBuilder("");
+        for(String score : savedScores){
+            scoreBuild.append(score+"\n");
+
         }
+
+        scoreView.setText(scoreBuild.toString());
     }
+
 
 }
