@@ -121,8 +121,6 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
 
     public void setHighScore() {
         int exScore = points;
-
-
         if (exScore > 0) {
             SharedPreferences.Editor scoreEdit = MainActivity.getSharedInstance().gamePrefs.edit();
             DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
@@ -135,9 +133,9 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
 
                 for (String eSc : exScores) {
                     String[] parts = eSc.split(" points - ");
-                    scoreStrings.add(new Score(parts[1], Integer.parseInt(parts[0])));
+                    scoreStrings.add(new Score(Integer.parseInt(parts[0]), parts[1]));
                 }
-                Score newScore = new Score(dateOutput, exScore);
+                Score newScore = new Score(exScore, dateOutput);
                 scoreStrings.add(newScore);
                 Collections.sort(scoreStrings);
 
