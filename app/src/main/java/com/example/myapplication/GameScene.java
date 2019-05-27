@@ -119,21 +119,19 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         hud.attachChild(pointsText);
     }
 
-    public void setHighScore(){
+    public void setHighScore() {
         int exScore = points;
-
-
-        if(exScore > 0) {
+        if (exScore > 0) {
             SharedPreferences.Editor scoreEdit = MainActivity.getSharedInstance().gamePrefs.edit();
             DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
             String dateOutput = dateForm.format(new Date());
             String scores = MainActivity.getSharedInstance().gamePrefs.getString("highScores", "");
-            if(scores.length()>0){
+            if (scores.length() > 0) {
                 //we have existing scores
                 List<Score> scoreStrings = new ArrayList<Score>();
                 String[] exScores = scores.split("\\|");
 
-                for(String eSc : exScores){
+                for (String eSc : exScores) {
                     String[] parts = eSc.split(" - ");
                     scoreStrings.add(new Score(parts[1], Integer.parseInt(parts[0])));
                 }
@@ -142,19 +140,18 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 Collections.sort(scoreStrings);
 
                 StringBuilder scoreBuild = new StringBuilder();
-                for(int s=0; s<scoreStrings.size(); s++){
-                    if(s>=10) break;//only want ten
-                    if(s>0) scoreBuild.append("|");//pipe separate the score strings
+                for (int s = 0; s < scoreStrings.size(); s++) {
+                    if (s >= 10) break;//only want ten
+                    if (s > 0) scoreBuild.append("|");//pipe separate the score strings
                     scoreBuild.append(scoreStrings.get(s).getScoreText());
                 }
                 //write to prefs
                 scoreEdit.putString("highScores", scoreBuild.toString());
                 scoreEdit.commit();
 
-            }
-            else{
+            } else {
                 //no existing
-                scoreEdit.putString("highScores", ""+exScore+" "+dateOutput);
+                scoreEdit.putString("highScores", "" + exScore + " " + dateOutput);
                 scoreEdit.commit();
             }
 
