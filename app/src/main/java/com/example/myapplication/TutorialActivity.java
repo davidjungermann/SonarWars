@@ -29,7 +29,7 @@ public class TutorialActivity extends AppCompatActivity {
                     public void run() {
                         back.getBackground().setColorFilter(null);
                     }
-                }, 50);
+                }, 100);
             }
         });
     }

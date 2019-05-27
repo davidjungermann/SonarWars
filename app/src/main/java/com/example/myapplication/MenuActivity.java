@@ -31,7 +31,7 @@ public class MenuActivity extends AppCompatActivity {
                     public void run() {
                         tutorial.getBackground().setColorFilter(null);
                     }
-                }, 50);
+                }, 100);
 
             }
         });
@@ -46,7 +46,7 @@ public class MenuActivity extends AppCompatActivity {
                     public void run() {
                         playGame.getBackground().setColorFilter(null);
                     }
-                }, 50);
+                }, 100);
             }
         });
 
@@ -60,7 +60,7 @@ public class MenuActivity extends AppCompatActivity {
                     public void run() {
                         highScore.getBackground().setColorFilter(null);
                     }
-                }, 50);
+                }, 100);
             }
         });
     }
