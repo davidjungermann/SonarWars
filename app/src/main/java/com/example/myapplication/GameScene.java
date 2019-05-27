@@ -141,7 +141,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 scoreStrings.add(newScore);
                 Collections.sort(scoreStrings);
 
-                StringBuilder scoreBuild = new StringBuilder("");
+                StringBuilder scoreBuild = new StringBuilder();
                 for(int s=0; s<scoreStrings.size(); s++){
                     if(s>=10) break;//only want ten
                     if(s>0) scoreBuild.append("|");//pipe separate the score strings
@@ -157,7 +157,6 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 scoreEdit.putString("highScores", ""+dateOutput+" - "+exScore);
                 scoreEdit.commit();
             }
-
 
         }
     }

@@ -33,4 +33,10 @@ public class TutorialActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(TutorialActivity.this, MenuActivity.class));
+    }
 }

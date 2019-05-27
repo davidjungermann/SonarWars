@@ -4,6 +4,7 @@ package com.example.myapplication;
 public class Score implements Comparable<Score> {
     private String scoreDate;
     public int scoreNum;
+    public int index;
 
     public Score(String date, int num){
         scoreDate=date;
