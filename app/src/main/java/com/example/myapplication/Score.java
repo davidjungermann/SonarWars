@@ -20,6 +20,6 @@ public class Score implements Comparable<Score> {
     }
 
     public String getScoreText() {
-        return scoreDate+" - "+scoreNum;
+        return scoreNum +" points - " +scoreDate;
     }
 }

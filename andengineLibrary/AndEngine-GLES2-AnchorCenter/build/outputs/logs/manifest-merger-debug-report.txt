@@ -1,45 +1,45 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:2:1-11:12
-INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:2:1-11:12
-INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:2:1-11:12
-INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:2:1-11:12
-INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:2:1-11:12
-INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:2:1-11:12
-INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:2:1-11:12
+ADDED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:2:1-11:12
+INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:2:1-11:12
+INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:2:1-11:12
+INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:2:1-11:12
+INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:2:1-11:12
+INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:2:1-11:12
+INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:2:1-11:12
 	package
-		ADDED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:3:2-25
-		INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
-		INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
+		ADDED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:3:2-25
+		INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
+		INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
 	android:versionName
-		ADDED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:5:2-27
-		INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
-		INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
+		ADDED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:5:2-27
+		INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
+		INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:2:11-69
+		ADDED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:2:11-69
 	android:versionCode
-		ADDED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:4:2-25
-		INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
-		INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
+		ADDED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:4:2-25
+		INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
+		INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
 uses-feature#0x00020000
-ADDED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:7:2-74
+ADDED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:7:2-74
 	android:glEsVersion
-		ADDED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:7:16-48
+		ADDED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:7:16-48
 	android:required
-		ADDED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:7:49-72
+		ADDED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:7:49-72
 application
-ADDED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:10:2-16
+ADDED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml:10:2-16
 uses-sdk
-INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
-INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
-INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
-INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
+INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
+INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
+INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
+INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
-		ADDED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
-		INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
+		INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
+		ADDED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
+		INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
-		ADDED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
-		INJECTED from C:\Users\david\AndroidStudioProjects\SonarWars2\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
+		INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
+		ADDED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
+		INJECTED from C:\Users\Oskar\StudioProjects\SonarWars\andengineLibrary\AndEngine-GLES2-AnchorCenter\AndroidManifest.xml
