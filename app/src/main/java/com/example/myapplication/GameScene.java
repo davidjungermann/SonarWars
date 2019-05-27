@@ -132,7 +132,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 String[] exScores = scores.split("\\|");
 
                 for (String eSc : exScores) {
-                    String[] parts = eSc.split(" - ");
+                    String[] parts = eSc.split(" points - ");
                     scoreStrings.add(new Score(parts[1], Integer.parseInt(parts[0])));
                 }
                 Score newScore = new Score(dateOutput, exScore);
