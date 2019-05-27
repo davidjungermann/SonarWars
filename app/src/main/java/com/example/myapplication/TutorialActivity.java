@@ -15,9 +15,7 @@ public class TutorialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
-
         final Button back = findViewById(R.id.button4);
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,5 +30,11 @@ public class TutorialActivity extends AppCompatActivity {
                 }, 100);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(TutorialActivity.this, MenuActivity.class));
     }
 }
