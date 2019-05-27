@@ -45,8 +45,7 @@ public class HighscoreActivity extends AppCompatActivity {
         StringBuilder scoreBuild = new StringBuilder();
         int i = 1;
         for (String score : savedScores) {
-
-            scoreBuild.append(i + ": " + score  + "\n");
+            scoreBuild.append(i + ": " + score + "\n");
             i++;
         }
         scoreView.setText(scoreBuild.toString());
