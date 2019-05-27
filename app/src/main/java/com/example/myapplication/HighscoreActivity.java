@@ -43,7 +43,7 @@ public class HighscoreActivity extends AppCompatActivity {
         String[] savedScores = scorePrefs.getString("highScores", "").split("\\|");
 
         StringBuilder scoreBuild = new StringBuilder();
-        int i = 1;
+        int i = 0;
         for (String score : savedScores) {
             scoreBuild.append(i + ": " + score + "\n");
             i++;
