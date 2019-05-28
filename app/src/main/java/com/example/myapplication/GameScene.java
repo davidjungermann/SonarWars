@@ -59,6 +59,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     private HUD hud;
     private Text pointsText;
     private Text magazine;
+    public static GameScene instance;
 
     public GameScene() {
         setOnSceneTouchListener(this);
@@ -87,6 +88,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     public void moveShip() {
         ship.moveShip(3 * accelerometerSpeedX);
     }
+
 
     public void setHud() {
         hud = new HUD();
@@ -119,21 +121,20 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         hud.attachChild(pointsText);
     }
 
-    public void setHighScore(){
+    public void setHighScore() {
         int exScore = points;
 
-
-        if(exScore > 0) {
+        if (exScore > 0) {
             SharedPreferences.Editor scoreEdit = MainActivity.getSharedInstance().gamePrefs.edit();
             DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
             String dateOutput = dateForm.format(new Date());
             String scores = MainActivity.getSharedInstance().gamePrefs.getString("highScores", "");
-            if(scores.length()>0){
+            if (scores.length() > 0) {
                 //we have existing scores
                 List<Score> scoreStrings = new ArrayList<Score>();
                 String[] exScores = scores.split("\\|");
 
-                for(String eSc : exScores){
+                for (String eSc : exScores) {
                     String[] parts = eSc.split(" - ");
                     scoreStrings.add(new Score(parts[0], Integer.parseInt(parts[1])));
                 }
@@ -141,20 +142,19 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 scoreStrings.add(newScore);
                 Collections.sort(scoreStrings);
 
-                StringBuilder scoreBuild = new StringBuilder("");
-                for(int s=0; s<scoreStrings.size(); s++){
-                    if(s>=10) break;//only want ten
-                    if(s>0) scoreBuild.append("|");//pipe separate the score strings
+                StringBuilder scoreBuild = new StringBuilder();
+                for (int s = 0; s < scoreStrings.size(); s++) {
+                    if (s >= 10) break;//only want ten
+                    if (s > 0) scoreBuild.append("|");//pipe separate the score strings
                     scoreBuild.append(scoreStrings.get(s).getScoreText());
                 }
                 //write to prefs
                 scoreEdit.putString("highScores", scoreBuild.toString());
                 scoreEdit.commit();
 
-            }
-            else{
+            } else {
                 //no existing
-                scoreEdit.putString("highScores", ""+dateOutput+" - "+exScore);
+                scoreEdit.putString("highScores", "" + dateOutput + " - " + exScore);
                 scoreEdit.commit();
             }
 
@@ -187,6 +187,12 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         if (!CoolDown.getSharedInstance().checkValidity()) {
             return false;
         }
+
+        if (MainActivity.getSharedInstance().lose.isReleased()) {
+            bulletCount = 20;
+            return false;
+        }
+
         if (bulletCount < 20) {
             ship.shoot();
             MainActivity.getSharedInstance().playFire();
@@ -203,6 +209,7 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
                 if (e.sprite.getY() < 0) {
                     MainActivity.getSharedInstance().vibrate();
                     MainActivity.getSharedInstance().playLose();
+                    MainActivity.getSharedInstance().lose.release();
                     setHighScore();
                     detach();
                     SensorListener.instance = null;

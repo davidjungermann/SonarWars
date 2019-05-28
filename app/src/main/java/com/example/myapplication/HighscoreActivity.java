@@ -43,13 +43,17 @@ public class HighscoreActivity extends AppCompatActivity {
         String[] savedScores = scorePrefs.getString("highScores", "").split("\\|");
 
         StringBuilder scoreBuild = new StringBuilder();
+        int i = 1;
         for (String score : savedScores) {
-            scoreBuild.append(score + "\n");
-
+            scoreBuild.append(i + ": " + score + " points" + "\n");
+            i++;
         }
-
         scoreView.setText(scoreBuild.toString());
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(HighscoreActivity.this, MenuActivity.class));
+    }
 }

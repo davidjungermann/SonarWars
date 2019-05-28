@@ -95,6 +95,7 @@ public class MainActivity extends SimpleBaseGameActivity {
         getEngine().setScene(mCurrentScene);
     }
 
+
     public void setCurrentActivity() {
         startActivity(new Intent(MainActivity.this, MenuActivity.class));
     }

@@ -46,7 +46,6 @@ public class GameOverScene extends MenuScene implements MenuScene.IOnMenuItemCli
     public boolean onMenuItemClicked(MenuScene arg0, IMenuItem arg1, float arg2, float arg3) {
         switch (arg1.getID()) {
             case REPLAY_START:
-                BulletPool.instance = null;
                 activity.setCurrentScene(new GameScene());
             default:
                 break;
