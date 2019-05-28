@@ -59,7 +59,6 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     private HUD hud;
     private Text pointsText;
     private Text magazine;
-    public static GameScene instance;
 
     public GameScene() {
         setOnSceneTouchListener(this);
@@ -189,15 +188,16 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         }
 
         if (MainActivity.getSharedInstance().lose.isReleased()) {
-            bulletCount = 20;
+            bulletCount = 21;
             return false;
         }
 
         if (bulletCount < 20) {
             ship.shoot();
             MainActivity.getSharedInstance().playFire();
+            return true;
         }
-        return true;
+        return false;
     }
 
     public void cleaner() {
@@ -205,7 +205,6 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
             Iterator<Enemy> eIt = EnemySpawn.getIterator();
             while (eIt.hasNext()) {
                 Enemy e = eIt.next();
-
                 if (e.sprite.getY() < 0) {
                     MainActivity.getSharedInstance().vibrate();
                     MainActivity.getSharedInstance().playLose();
