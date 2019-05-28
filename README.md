@@ -1,2 +1,2 @@
 # SonarWars
-Game for Advanced interaction design MAMN01
+Game for Advanced interaction design MAMN01 at LTH. 
