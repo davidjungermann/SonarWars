@@ -59,6 +59,8 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     private HUD hud;
     private Text pointsText;
     private Text magazine;
+    int livesCounter = 3;
+    private Text livesText;
 
     public GameScene() {
         setOnSceneTouchListener(this);
@@ -118,6 +120,11 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         pointsText = new Text(50, mCamera.getHeight() - 50, MainActivity.getSharedInstance().mFont2, "000000",
                 MainActivity.getSharedInstance().getVertexBufferObjectManager());
         hud.attachChild(pointsText);
+
+        //Sets Lives
+        livesText = new Text(mCamera.getWidth() - 100, mCamera.getHeight() - 50, MainActivity.getSharedInstance().mFont4, "3",
+                MainActivity.getSharedInstance().getVertexBufferObjectManager());
+        hud.attachChild(livesText);
     }
 
     public void setHighScore() {
@@ -181,6 +188,11 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
         bombText.setText(bombString);
     }
 
+    public void updateLives() {
+        String livesString = Integer.toString(livesCounter);
+        livesText.setText(livesString);
+    }
+
     @Override
     public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {
         if (!CoolDown.getSharedInstance().checkValidity()) {
@@ -201,19 +213,28 @@ public class GameScene extends Scene implements IOnSceneTouchListener {
     }
 
     public void cleaner() {
+
         synchronized (this) {
             Iterator<Enemy> eIt = EnemySpawn.getIterator();
             while (eIt.hasNext()) {
+                updateLives();
                 Enemy e = eIt.next();
                 if (e.sprite.getY() < 0) {
+                    livesCounter--;
+                    updateLives();
                     MainActivity.getSharedInstance().vibrate();
-                    MainActivity.getSharedInstance().playLose();
-                    MainActivity.getSharedInstance().lose.release();
-                    setHighScore();
-                    detach();
-                    SensorListener.instance = null;
-                    ProximityListener.instance = null;
-                    setChildScene(new GameOverScene());
+                    eIt.remove();
+                    if (livesCounter <= 0) {
+                        MainActivity.getSharedInstance().vibrateLong();
+                        MainActivity.getSharedInstance().playLose();
+                        MainActivity.getSharedInstance().lose.release();
+                        setHighScore();
+                        detach();
+                        SensorListener.instance = null;
+                        ProximityListener.instance = null;
+                        setChildScene(new GameOverScene());
+                    }
+
                 }
                 if (accelerometerSpeedY < -5 && bombCounter > 0) {
                     MainActivity.getSharedInstance().playLifeline();

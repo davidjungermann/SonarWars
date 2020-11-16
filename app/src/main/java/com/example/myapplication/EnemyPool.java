@@ -1,6 +1,10 @@
 package com.example.myapplication;
 
+import android.util.Log;
+
 import org.andengine.util.adt.pool.GenericPool;
+
+import java.util.Random;
 
 public class EnemyPool extends GenericPool<Enemy> {
 

@@ -32,6 +32,7 @@ public class MainActivity extends SimpleBaseGameActivity {
     public Font mFont;
     public Font mFont2;
     public Font mFont3;
+    public Font mFont4;
     public Sound fire;
     public Sound lifeline;
     public Sound death;
@@ -60,9 +61,11 @@ public class MainActivity extends SimpleBaseGameActivity {
         mFont = FontFactory.create(this.getFontManager(), this.getTextureManager(), 256, 512, Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 72, android.graphics.Color.rgb(255, 255, 51));
         mFont2 = FontFactory.create(this.getFontManager(), this.getTextureManager(), 256, 512, Typeface.create(Typeface.DEFAULT, Typeface.NORMAL), 52, Color.GREEN);
         mFont3 = FontFactory.create(this.getFontManager(), this.getTextureManager(), 256, 512, Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 72, android.graphics.Color.rgb(30, 144, 255));
+        mFont4 = FontFactory.create(this.getFontManager(), this.getTextureManager(), 256, 512, Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 72, android.graphics.Color.rgb(255, 0, 0));
         mFont.load();
         mFont2.load();
         mFont3.load();
+        mFont4.load();
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         gamePrefs = getSharedPreferences(GAME_PREFS, 0);
         try {
@@ -152,5 +155,7 @@ public class MainActivity extends SimpleBaseGameActivity {
     public void vibrate() {
         v.vibrate(300);
     }
+
+    public void vibrateLong() { v.vibrate(1000); }
 
 }
